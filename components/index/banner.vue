@@ -1,5 +1,5 @@
 <template>
-  <AppSwiper>
+  <AppSwiper :breakpoints="{}">
     123
   </AppSwiper>
   <div>123</div>
