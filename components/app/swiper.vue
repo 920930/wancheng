@@ -8,7 +8,6 @@
     }"
     :pagination="{ clickable: true }"
     :autoplay="{ delay }"
-    :scrollbar="{ draggable: true }"
     :breakpoints="breakpoints"
     @swiper="onSwiper"
     @slideChange="onSlideChange"
@@ -27,7 +26,7 @@
 <script setup lang="ts">
   import { PropType, computed } from 'vue';
   // import Swiper core and required modules
-  import ISwiper, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+  import ISwiper, { Navigation, Pagination, A11y, Autoplay, EffectCube, EffectFade } from 'swiper';
 
   // Import Swiper Vue.js components
   import { Swiper, SwiperSlide } from 'swiper/vue';
@@ -47,9 +46,16 @@
       type: Number,
       default: 5000
     },
-    breakpoints: {
-      type: Object,
-      default: {
+    isBreak: {
+      type: Boolean,
+      default: false
+    }
+  })
+
+  const modules = [Navigation, Pagination, A11y, Autoplay, EffectCube, EffectFade];
+  const breakpoints = computed(() => {
+    if(props.isBreak){
+      return {
         320: { //当屏幕宽度大于等于320
           slidesPerView: 2,
           spaceBetween: 10
@@ -63,10 +69,10 @@
           spaceBetween: 20
         }
       }
+    } else {
+      return undefined;
     }
   })
-
-  const modules = [Navigation, Pagination, Scrollbar, A11y];
 
   const onSwiper = (swiper: ISwiper) => {
     console.log(swiper);
