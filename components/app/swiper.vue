@@ -12,15 +12,19 @@
     @swiper="onSwiper"
     @slideChange="onSlideChange"
   >
-    <swiper-slide>
-      <div class="md:h-110 h-52 w-full bg-cover bg-center" :style="`background-image: url(http://www.cdymzs.com/uploadfile/2022/0309/20220309024541610.jpg);`"></div>
+    <swiper-slide v-for="(value, index) in data" :key="index">
+      <slot :data="value" :index="index">
+        <div class="md:h-100 h-52 w-full bg-cover bg-center" :style="`background-image: url(${value.url});`"></div>
+      </slot>
     </swiper-slide>
-    <swiper-slide>
-      <div class="md:h-110 h-52 w-full bg-cover bg-center" :style="`background-image: url(http://www.cdymzs.com/uploadfile/2022/0309/20220309024541610.jpg);`"></div>
-    </swiper-slide>
-    <swiper-slide>
-      <div class="md:h-110 h-52 w-full bg-cover bg-center" :style="`background-image: url(http://www.cdymzs.com/uploadfile/2022/0309/20220309024541610.jpg);`"></div>
-    </swiper-slide>
+    <template v-slot:container-start>
+      <ul class="flex justify-center md:space-x-5 space-x-2" v-if="slotContainerStartBool">
+        <li v-for="(val, i) in data" @click="chantBtn(i)">
+          <slot name="swiper-container-start" :data="{index: i, val}"></slot>
+        </li>
+      </ul>
+    </template>
+    <template v-slot:wrapper-end><slot name="swiper-wrapper-end"></slot></template>
   </swiper>
 </template>
 <script setup lang="ts">
@@ -38,6 +42,10 @@
   import 'swiper/css/scrollbar';
 
   const props = defineProps({
+    data: {
+      type: Array as PropType<any[]>,
+      default: []
+    },
     pagination: {
       type: Object as PropType<{width?: String, bgColor?: String, activeBgColor?: string}>,
       default: {width: '15px', bgColor: 'white', activeBgColor: 'red'}
@@ -49,9 +57,14 @@
     isBreak: {
       type: Boolean,
       default: false
-    }
+    },
+    activeIndex: {
+      type: Number,
+      default: 0
+    },
+    slotContainerStartBool: Boolean,
   })
-
+  const emits = defineEmits(['update:activeIndex'])
   const modules = [Navigation, Pagination, A11y, Autoplay, EffectCube, EffectFade];
   const breakpoints = computed(() => {
     if(props.isBreak){
@@ -73,14 +86,11 @@
       return undefined;
     }
   })
-
-  const onSwiper = (swiper: ISwiper) => {
-    console.log(swiper);
-  };
-  const onSlideChange = () => {
-    console.log('slide change');
-  };
-
+  const mySwiper = ref<ISwiper>();
+  const onSwiper = (swiper: ISwiper) => mySwiper.value = swiper;
+  const onSlideChange = (swiper: ISwiper) => emits('update:activeIndex', swiper.activeIndex);
+  const chantBtn = (i: number) => mySwiper.value!.slideTo(i, 1000, false)
+  watch(() => props.activeIndex, (i: number) => chantBtn(i))
 </script>
 
 <style scoped lang="less">

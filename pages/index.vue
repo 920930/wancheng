@@ -3,6 +3,7 @@
   <IndexProduct />
   <IndexCase />
   <IndexComm />
+  <IndexTeam />
   <section class="h-96">1</section>
   <section class="h-96">2</section>
   <section class="h-96">3</section>
