@@ -1,6 +1,6 @@
 <template>
   <TopTitle title="家装案例·精品制造" desc="美家养成记，格调美学的灵感提案" class="mt-16" />
-  <ul class="container mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 mt-10">
+  <ul class="container mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 my-12">
     <li class="relative overflow-hidden w-full h-48 md:h-80 rounded-md group border">
       <a href="/case/29" class="">
         <div class="w-full h-full bg-cover duration-200 bg-center group-hover:scale-105" style="background-image: url('http://admin.qijiadianshang.com/uploads/images/2022/0804/1_20220804162025_fPZoR17HPu.jpg')"></div>

@@ -5,6 +5,6 @@
 </template>
 
 <style>
-@import '//at.alicdn.com/t/c/font_3785749_jq9oj3tvf4.css';
+@import '//at.alicdn.com/t/c/font_3785749_45nxrd3pn1b.css';
 
 </style>
