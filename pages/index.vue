@@ -5,10 +5,7 @@
   <IndexComm />
   <IndexTeam />
   <IndexHall />
-  <section class="h-96">1</section>
-  <section class="h-96">2</section>
-  <section class="h-96">3</section>
-  <section class="h-96">4</section>
+  <IndexNews />
 </template>
 
 <script setup lang='ts'>
