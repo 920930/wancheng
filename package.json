@@ -13,6 +13,8 @@
     "nuxt": "3.0.0"
   },
   "dependencies": {
-    "swiper": "^8.4.5"
+    "swiper": "^8.4.5",
+    "vee-validate": "^4.7.3",
+    "yup": "^0.32.11"
   }
 }
