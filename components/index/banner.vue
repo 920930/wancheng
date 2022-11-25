@@ -1,5 +1,5 @@
 <template>
-  <AppSwiper></AppSwiper>
+  <AppSwiper :data="data"></AppSwiper>
   <section class="py-10">
     <ul class="container mx-auto grid grid-cols-4 gap-16">
       <li class="bg-slate-50 flex items-center justify-between px-5 py-2 shadow-md cursor-pointer group hover:text-red-600">
@@ -35,7 +35,18 @@
 </template>
 
 <script setup lang='ts'>
-
+const data = [
+  {
+    m: null,
+    pc: "http://admin.qijiadianshang.com/uploads/images/2022/0730/1_20220730094249_izMSL08oSe.jpg",
+    url: null
+  },
+  {
+    m: null,
+    pc: "http://admin.qijiadianshang.com/uploads/images/2022/0730/1_20220730094249_izMSL08oSe.jpg",
+    url: null
+  }
+]
 </script>
 
 <style scoped>

@@ -13,8 +13,9 @@
     @slideChange="onSlideChange"
   >
     <swiper-slide v-for="(value, index) in data" :key="index">
-      <slot :data="value" :index="index">
-        <div class="md:h-100 h-52 w-full bg-cover bg-center" :style="`background-image: url(${value.url});`"></div>
+      <slot :value="value" :index="index">
+        <div class="h-110 w-full bg-cover bg-center md:block hidden" :style="`background-image: url(${value.pc});`"></div>
+        <div class="h-52 w-full bg-cover bg-center md:hidden" :style="`background-image: url(${value.m});`"></div>
       </slot>
     </swiper-slide>
     <template v-slot:container-start>
@@ -54,6 +55,11 @@
       type: Number,
       default: 5000
     },
+    // 底部点是否显示
+    hasPagination: {
+      type: Boolean,
+      default: true
+    },
     isBreak: {
       type: Boolean,
       default: false
@@ -64,8 +70,12 @@
     },
     slotContainerStartBool: Boolean,
   })
-  const emits = defineEmits(['update:activeIndex'])
-  const modules = [Navigation, Pagination, A11y, Autoplay, EffectCube, EffectFade];
+  const emits = defineEmits(['update:activeIndex']);
+  const modules = computed(() => {
+  const ret = [Navigation, A11y, Autoplay, EffectCube, EffectFade]
+  props.hasPagination && ret.push(Pagination)
+  return ret
+})
   const breakpoints = computed(() => {
     if(props.isBreak){
       return {
