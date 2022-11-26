@@ -7,21 +7,21 @@
 
       <ul class="inline-flex ml-72 h-20 space-x-16 pt-7">
         <li v-for="(nav, i) in navs" class="group">
-          <a href="" class="flex items-center hover:text-red-600">
+          <NuxtLink :to="nav.url" class="flex items-center hover:text-red-600">
             {{nav.title}}
             <span v-show="nav.children">
               <i class="iconfont icon-caret-down group-hover:hidden duration-200"></i>
               <i class="iconfont icon-caret-up hidden group-hover:inline-block duration-200"></i>
             </span>
-          </a>
+          </NuxtLink>
           <div 
             v-show="nav.children"
             class="absolute left-0 w-full top-20 shadow-lg justify-center bg-white space-x-32 group-hover:flex hidden py-3 text-gray-600"
             >
-            <a href="" v-for="child in nav.children" class="flex flex-col items-center hover:text-red-600">
+            <NuxtLink :to="child.url" v-for="child in nav.children" class="flex flex-col items-center hover:text-red-600">
               <i class="iconfont" :class="child.icon" style="font-size: 35px"></i>
               <p>{{child.title}}</p>
-            </a>
+            </NuxtLink>
           </div>
         </li>
       </ul>
@@ -38,10 +38,10 @@
 <script lang='ts' setup>
 const navs = [
   {title: '首页', url: '/'},
-  {title: '元木整装', url: '/', children: [
-    {title: '元木整装', url: '', icon: 'icon-gonglve'},
+  {title: '新房整装', url: '/house', children: [
+    {title: '新房整装', url: '/house', icon: 'icon-gonglve'},
     {title: '定制软装', url: '', icon: 'icon-ruanzhuang'},
-    {title: '旧房翻新', url: '', icon: 'icon-yemianzhuangxiu'}
+    {title: '旧房翻新', url: '/old', icon: 'icon-yemianzhuangxiu'}
   ]},
   {title: '智能报价', url: '/'},
   {title: '案例实景', url: '/', children: [

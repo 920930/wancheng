@@ -1,5 +1,5 @@
 <template>
-  <TopTitle title="192家一线国内外品牌建材展厅" desc="知名建材企业，保证装修材料品质，真材实料，不给环保生活方式留隐患！" class="mt-10" />
+  <AppTitle title="192家一线国内外品牌建材展厅" desc="知名建材企业，保证装修材料品质，真材实料，不给环保生活方式留隐患！" class="mt-10" />
   <section class="container mx-auto mt-10">
     <AppSwiper :data="floor1" slotContainerStartBool v-model:activeIndex="activeIndex">
       <template #default="{value}">

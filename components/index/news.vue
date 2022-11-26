@@ -1,6 +1,6 @@
 <template>
   <section class="bg-gray-100 mt-16 py-10">
-    <TopTitle title="最新资讯" desc="实时分享品牌新闻资讯及最新优惠活动" />
+    <AppTitle title="最新资讯" desc="实时分享品牌新闻资讯及最新优惠活动" />
     <section class="container mx-auto md:flex mt-6 px-3 md:px-0">
       <section class="md:w-5/12 group">
         <div class="md:h-96 h-48 overflow-hidden relative">

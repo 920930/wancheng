@@ -1,6 +1,6 @@
 <template>
   <section class="md:py-16 bg-[url('/images/index/product-bg.jpg')] mb-3 md:mb-0">
-    <TopTitle title="万城龙邦·至尊整装" desc="让大宅大有不同，缔造您的专属完美装修方案" />
+    <AppTitle title="万城龙邦·至尊整装" desc="让大宅大有不同，缔造您的专属完美装修方案" />
     <section class="container mx-auto flex md:mt-10 mt-6">
       <section class="h-110 w-5/12 bg-white py-12 px-20 rounded shadow-md">
         <h3 class="text-3xl font-bold">WANCHENG</h3>
