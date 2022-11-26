@@ -10,7 +10,7 @@
       <textarea class="border w-full h-96 outline-none p-4" v-model="value"></textarea>
     </template>
     <input v-model="value" :type="type" class="outline-none border px-2 h-10 flex-auto rounded-tr rounded-br" :class="{'border-red-300': errorMessage}" v-else />
-    <span class="leading-9 pl-2 text-red-600 absolute top-7 text-xs">{{ errorMessage }}</span>
+    <span class="leading-9 pl-2 text-red-600 absolute top-8 text-xs">{{ errorMessage }}</span>
     <slot />
   </div>
 </template>
