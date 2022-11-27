@@ -14,15 +14,15 @@
     <section class="container mx-auto text-gray-300 flex">
       <section class="flex-1 text-teal-600">
         <p>全国统一服务热线</p>
-        <h3 class="text-5xl font-bold mt-5">028-80801088</h3>
+        <h3 class="text-5xl font-bold mt-5">{{web.tel}}</h3>
       </section>
       <aside><img src="http://www.qijiadianshang.com/images/wechat.png" class="w-32" alt=""></aside>
     </section>
   </section>
   <section class="bg-black text-center">
-    <p class="text-gray-300 py-3 text-sm">
-      <span>地址：成都高新区吉泰二路266号18栋2楼附205号</span>
-      <span>蜀ICP备2022005621号-1</span>
+    <p class="text-gray-400 py-3 text-sm space-x-4">
+      <span>地址：{{web.address}}</span>
+      <span>{{web.beian}}</span>
     </p>
   </section>
 </template>
@@ -30,6 +30,9 @@
 <script lang='ts' setup>
 import { useForm } from "vee-validate";
 import * as yup from "yup";
+import { IWebSite } from '@/config/tyings'
+
+const { web } = inject<IWebSite>('website') as IWebSite;
 
 const validationSchema = yup.object({
   name: yup.string().required("姓名必填"),
@@ -43,6 +46,7 @@ const { handleSubmit } = useForm({
 const fetchBtn = handleSubmit(async (value) => {
   console.log(value)
 });
+
 
 </script>
 

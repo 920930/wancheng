@@ -40,10 +40,10 @@ const navs = [
   {title: '首页', url: '/'},
   {title: '新房整装', url: '/house', children: [
     {title: '新房整装', url: '/house', icon: 'icon-gonglve'},
-    {title: '定制软装', url: '', icon: 'icon-ruanzhuang'},
+    {title: '定制软装', url: '/ruanzhuang', icon: 'icon-ruanzhuang'},
     {title: '旧房翻新', url: '/old', icon: 'icon-yemianzhuangxiu'}
   ]},
-  {title: '智能报价', url: '/'},
+  {title: '智能报价', url: '/baojia'},
   {title: '案例实景', url: '/', children: [
     {title: '美图案例', url: '', icon: 'icon-xingzhuang-tupian'},
     {title: 'VR实景', url: '', icon: 'icon-VR'},

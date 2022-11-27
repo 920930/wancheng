@@ -57,7 +57,7 @@
 
         <ul class="grid grid-cols-2 gap-3 md:flex flex-wrap justify-between items-center">
           <template v-for="item in floor4">
-            <li class="md:w-44 md:h-44 border md:pt-5 pb-3 pt-3 md:pb-3  text-center" v-if="item.title">
+            <li class="md:w-44 md:h-36 border md:pt-5 pb-3 pt-3 md:pb-3  text-center" v-if="item.title">
               <i class="iconfont" :class="item.icon" style="font-size: 40px"></i>
               <p class="md:mt-2 text-sm md:text-base">{{item.title}}</p>
             </li>
@@ -127,17 +127,17 @@ const floor3 = [
 ];
 
 const floor4 = [
-  {title: '量房沟通 采集意见',  icon: 'icon-shangmenliangfang'},
-  {icon: 'icon-right'},
-  {title: '改造师 提供改造方案',  icon: 'icon-xiangmu'},
-  {icon: 'icon-right'},
-  {title: '成功签约 材料下单',  icon: 'icon-baojiadan'},
-  {icon: 'icon-right'},
-  {title: '施工团队 即刻改造',  icon: 'icon-zhihuigongdi'},
-  {icon: 'icon-right'},
+  {title: '量房沟通 采集意见',  icon: 'icon-thin-_pencil_rul'},
+  {icon: 'icon-youjiantou'},
+  {title: '改造师 提供改造方案',  icon: 'icon-book'},
+  {icon: 'icon-youjiantou'},
+  {title: '成功签约 材料下单',  icon: 'icon-shangpinjiagexinxi'},
+  {icon: 'icon-youjiantou'},
+  {title: '施工团队 即刻改造',  icon: 'icon-icon1'},
+  {icon: 'icon-youjiantou'},
   {title: '收荒保洁 合格验收',  icon: 'icon-jindu'},
-  {icon: 'icon-right'},
-  {title: '成功焕新',  icon: 'icon-zongzhi'},
+  {icon: 'icon-youjiantou'},
+  {title: '成功焕新',  icon: 'icon-mubiao'},
 ];
 
 </script>
