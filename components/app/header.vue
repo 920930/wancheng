@@ -45,9 +45,9 @@ const navs = [
   ]},
   {title: '智能报价', url: '/baojia'},
   {title: '案例实景', url: '/case', children: [
-    {title: '美图案例', url: '', icon: 'icon-xingzhuang-tupian'},
-    {title: 'VR实景', url: '', icon: 'icon-VR'},
-    {title: '在建工地', url: '', icon: 'icon-icon1'}
+    {title: '美图案例', url: '/case?type=1', icon: 'icon-xingzhuang-tupian'},
+    {title: 'VR实景', url: '/case?type=0', icon: 'icon-VR'},
+    {title: '在建工地', url: '/room', icon: 'icon-icon1'}
   ]},
   {title: '设计团队', url: '/'},
   {title: '家装指南', url: '/', children: [

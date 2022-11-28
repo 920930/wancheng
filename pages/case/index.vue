@@ -24,12 +24,15 @@
 <script setup lang='ts'>
 import {IWebSite} from '@/config/tyings'
 const { web, style, huxing } = inject<IWebSite>('website') as IWebSite;
+const route = useRoute();
+console.log(route.query)
+watch(() => route.query, (val) => console.log(val))
 const cases = [
   {
     "id": 29,
     "title": "79㎡老房一居改两居",
     "img": "http://admin.qijiadianshang.com/uploads/images/2022/0804/1_20220804162025_fPZoR17HPu.jpg",
-    "type": 1,
+    "type": 0,
     "huxing": 1,
     "area": 79,
     "style": 1,
@@ -63,7 +66,7 @@ const cases = [
     "id": 27,
     "title": "120㎡的简约风三房",
     "img": "http://admin.qijiadianshang.com/uploads/images/2022/0730/1_20220730152156_s6j3RJEXiJ.jpg",
-    "type": 1,
+    "type": 0,
     "huxing": 2,
     "area": 120,
     "style": 2,
