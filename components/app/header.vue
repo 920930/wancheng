@@ -44,7 +44,7 @@ const navs = [
     {title: '旧房翻新', url: '/old', icon: 'icon-yemianzhuangxiu'}
   ]},
   {title: '智能报价', url: '/baojia'},
-  {title: '案例实景', url: '/', children: [
+  {title: '案例实景', url: '/case', children: [
     {title: '美图案例', url: '', icon: 'icon-xingzhuang-tupian'},
     {title: 'VR实景', url: '', icon: 'icon-VR'},
     {title: '在建工地', url: '', icon: 'icon-icon1'}
