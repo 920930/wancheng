@@ -19,7 +19,7 @@
       </div>
     </li>
   </ul>
-  <Pagination :total="cases.total" v-model:page="info.page" @change="getCases($route.query.type)" class="mb-10" />
+  <Pagination :total="cases.total" v-model:page="info.page" @change="getCases($route.query.type)" class="mb-10" v-if="cases.data.length" />
 </template>
 
 <script setup lang='ts'>
@@ -51,7 +51,10 @@ const getCases = async (type: any) => {
     cases.total = caseData.value.total;
 }
 getCases(route.query.type)
-watch(() => route.query, (val) => getCases(val.type))
+watch(() => route.query, (val) => {
+  info.page = 1
+  getCases(val.type)
+})
 
 </script>
 

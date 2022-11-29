@@ -42,7 +42,8 @@ type TUser = {
   level: number
   timer: number
   worktime?: string
-  cases: Pick<TCases, 'id' | 'img' | 'title' | 'style' | 'area' | 'huxing'>[]
+  cases: Pick<TCases, 'id' | 'img' | 'title' | 'style' | 'area' | 'huxing'>[];
+  cases_count?: number;
   info: {
     edu: string
     idea: string

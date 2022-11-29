@@ -51,7 +51,7 @@ const navs = [
     {title: 'VR实景', url: '/case?type=0', icon: 'icon-VR'},
     {title: '在建工地', url: '/room', icon: 'icon-icon1'}
   ]},
-  {title: '设计团队', url: '/'},
+  {title: '设计团队', url: '/team'},
   {title: '家装指南', url: '/', children: [
     {title: '装修攻略', url: '', icon: 'icon-taiji'},
     {title: '装修日记', url: '', icon: 'icon-book'},
