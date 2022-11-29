@@ -28,7 +28,7 @@
       
       <section class="inline-flex float-right mt-5 items-center">
         <i class="iconfont icon-lianxi" style="font-size: 26px"></i>
-        <span class="ml-2">189 8201 6786</span>
+        <span class="ml-2">{{web.tel}}</span>
       </section>
     </section>
   </header>
@@ -36,6 +36,8 @@
 </template>
 
 <script lang='ts' setup>
+import { IWebSite } from '@/config/tyings';
+const { web } = inject('website') as IWebSite
 const navs = [
   {title: '首页', url: '/'},
   {title: '新房整装', url: '/house', children: [

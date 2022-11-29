@@ -1,6 +1,6 @@
 <template>
   <section class="pt-16 bg-[url('/images/index/team-bg.jpg')] pb-24 bg-center">
-    <TopTitle title="万城龙邦·至尊整装" desc="让大宅大有不同，缔造您的专属完美装修方案" whiteColor />
+    <AppTitle title="万城龙邦·至尊整装" desc="让大宅大有不同，缔造您的专属完美装修方案" whiteColor />
     <ul class="container mx-auto px-32 grid grid-cols-2 md:gap-x-96 gap-y-16 text-gray-400 md:mt-40 text-sm">
       <li class="text-right pr-48">
         <div class="border-b pb-1.5 mb-2.5 text-teal-600 border-gray-500">擅长多元化风格诠释 <span class="text-xl">更专业</span></div>

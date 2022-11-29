@@ -1,6 +1,6 @@
 <template>
   <section class="md:py-16 bg-[url('/images/index/comm-bg.jpg')] mb-3 md:mb-0">
-    <section class="container mx-auto bg-white bg-opacity-70 py-28">
+    <section class="container mx-auto bg-white bg-opacity-70 py-20">
       <AppTitle title="F2C供应链，全系正品" desc="轻颜家具、全新家电，实用耐用是家的最终归属。 魅力软装，好设计是家的灵魂" />
       
       <ul class="grid grid-cols-2 md:grid-cols-4 mt-20 text-gray-700">
