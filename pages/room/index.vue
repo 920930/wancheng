@@ -24,15 +24,14 @@
         </section>
       </li>
     </ul>
-    <Pagination v-model="info.page" :total="rooms.total" :size="info.size" @change="changeBtn"></Pagination>
+    <Pagination v-model:page="info.page" :total="rooms.total" :size="info.size" @change="getRooms"></Pagination>
   </section>
 </template>
 
 <script lang='ts' setup>
-// import { getLists } from '@/api'
 import { IWebSite, IRoomList } from '@/config/tyings';
-// inject<(str: string) => void>('changeTitle')('在建工地')
-
+// inject<(str: string) => void>('changeTitle')('在建工地');
+const appConfig = useAppConfig();
 const { huxing, state, web } = inject<IWebSite>('website') as IWebSite;
 const info = reactive({
   page: 1,
@@ -42,10 +41,18 @@ const rooms = ref<IRoomList>({
   data: [],
   total: 0
 })
-const getRooms = async () => rooms.value = await getLists<IRoomList>('room', info);
+const getRooms = async () => {
+  const { data } = await useFetch(appConfig.url + '/room', {
+    query: {
+      page: info.page,
+      size: info.size
+    }
+  })
+  const dataValue = data.value as IRoomList;
+  rooms.value.data = dataValue.data;
+  rooms.value.total = dataValue.total;
+}
 getRooms()
-
-const changeBtn = async () => getRooms()
 
 useHead({
   title: '在建工地 - ' + web.title,
@@ -54,9 +61,7 @@ useHead({
     {name: 'description', content: web.description},
   ]
 })
-definePageMeta({
-  title: '在建工地'
-})
+
 </script>
 
 <style lang='less' scoped>

@@ -51,7 +51,7 @@ provide('changeTitle', (title: string) => topTitle.value = title)
 </script>
 
 <style>
-@import '//at.alicdn.com/t/c/font_3785749_g4ngnefyh7.css';
+@import '//at.alicdn.com/t/c/font_3785749_xedfwkeq08.css';
 @media(min-width: 769px) {
   .banner{
     height: 700px;

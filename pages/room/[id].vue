@@ -1,6 +1,6 @@
 <template>
   <section class="bg-slate-100 md:py-12">
-    <section class="container mx-auto box-border">
+    <section class="container mx-auto box-border" v-if="room">
 
       <section class="bg-white md:p-6 flex flex-col md:flex-row">
         <div class="md:flex-1 bg-cover bg-center md:mr-8 h-48 md:h-auto" :style="`background-image: url('${room.img}')`"></div>
@@ -31,9 +31,9 @@
           </div>
         </section>
         <section class="w-full col-span-3 md:p-5 p-3">
-          <LayoutSwiper :breakpoints="breakpoints" :datas="item.images" v-slot="{data}">
-            <div class="md:h-80 h-44 w-full bg-cover bg-center" :style="`background-image: url(${data});`"></div>
-          </LayoutSwiper>
+          <AppSwiper :data="item.images" isBreak v-slot="{value}">
+            <div class="md:h-72 h-44 w-full bg-cover bg-center" :style="`background-image: url(${value});`"></div>
+          </AppSwiper>
           <p class="md:mt-5 mt-2 text-sm leading-6">{{item.text}}</p>
         </section>
       </section>
@@ -41,32 +41,17 @@
     </section>
 
     <Dialog v-model:open="openGd" meidaWidth height="h-100" top-img="/images/baojia/floor-gd.jpg">
-      <div class="relative mt-10">
-        <label class="absolute text-red-600 top-1/2 -translate-y-1/2 -translate-x-3">*</label>
-        <input :class="[{'border-red-500': stateRef.name}]" class="w-full border text-sm p-2.5 rounded-md hover:border-cyan-600 focus:border-cyan-600 outline-none" placeholder="您的称呼" v-model.trim="formData.name">
-        <span v-show="stateRef.name" class="absolute left-1 bottom-0 text-xs translate-y-4 text-red-500">您的中文称呼</span>
-      </div>
-      <div class="relative my-5">
-        <label class="absolute text-red-600 top-1/2 -translate-y-1/2 -translate-x-3">*</label>
-        <input :class="[{'border-red-500': stateRef.phone}]" class="w-full border text-sm p-2.5 rounded-md hover:border-cyan-600 focus:border-cyan-600 outline-none" placeholder="您的联系电话" v-model.trim="formData.phone">
-        <span v-show="stateRef.phone" class="absolute left-1 bottom-0 text-xs translate-y-4 text-red-500">您的联系电话</span>
-      </div>
-      <div class="relative my-5">
-        <label class="absolute text-red-600 top-1/2 -translate-y-1/2 -translate-x-3">*</label>
-        <input class="w-full border text-sm p-2.5 rounded-md hover:border-cyan-600 focus:border-cyan-600 outline-none" placeholder="预约参观时间" v-model.trim="formData.note">
-      </div>
-      <button @click="formBtn" class="w-full bg-red-600 text-sm py-2.5 text-white rounded-lg active:bg-green-600">马上预约</button>
+123
     </Dialog>
 
-    <div v-if="successData.isShow" class="absolute z-50 top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black bg-opacity-80 p-2 text-white rounded-md text-sm">{{successData.msg}}</div>
+    <!-- <div v-if="successData.isShow" class="absolute z-50 top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black bg-opacity-80 p-2 text-white rounded-md text-sm">{{successData.msg}}</div> -->
   </section>
 </template>
 
 <script lang='ts' setup>
-import { getContent } from '@/api'
-import { IRoom } from '@/config/tyings'
-import { IWebSite } from '@/config/tyings';
-import { messagePost } from '@/api'
+// import { getContent } from '@/api'
+import { IWebSite, IRoom } from '@/config/tyings';
+const appConfig = useAppConfig()
 const changeTitle = inject<(str: string) => void>('changeTitle'),
       openGd = ref(false),
       successData = reactive({
@@ -74,23 +59,11 @@ const changeTitle = inject<(str: string) => void>('changeTitle'),
         msg: ''
       })
 
-const breakpoints = {
-  320: { //当屏幕宽度大于等于320
-    slidesPerView: 2,
-    spaceBetween: 10
-  },
-  768: { //当屏幕宽度大于等于768
-    slidesPerView: 3,
-    spaceBetween: 15
-  },
-  1280: {  //当屏幕宽度大于等于1280
-    slidesPerView: 4,
-    spaceBetween: 20
-  }
-}
 const route = useRoute();
-const room = await getContent<IRoom>('room', route.params.id as string);
-const { state } = inject<IWebSite>('website');
+const { data } = await useFetch(appConfig.url + '/room/' + route.params.id);
+console.log(data.value)
+const room = data.value as IRoom;
+const { state } = inject<IWebSite>('website') as IWebSite;
 
 useHead({
   title: room.title + room.area + '平米' + state[room.state],
@@ -99,50 +72,7 @@ useHead({
     {name: 'description', content: room.description},
   ]
 })
-onMounted(() => changeTitle(room.title))
 
-// 表单提交状态
-const stateRef = reactive({
-  name: false,
-  phone: false,
-})
-
-// 表单数据
-const formData = reactive({
-  name: '',
-  phone: '',
-  floor: '',
-  area: '',
-  note: '',
-  path: useRoute().fullPath,
-  timer: 0,
-})
-const checkPhone =() => /^1[3456789]\d{9}$/g.test(formData.phone)
-// 提交
-const formBtn = async () => {
-  stateRef.name = formData.name.length > 0 ? false : true;
-  stateRef.phone = formData.phone.length > 0 && checkPhone() ? false : true;
-  if(stateRef.phone || stateRef.name) return;
-  // 预约时间嫁接
-  formData.note.length > 0 && (formData.note = '预约参观工地时间：' + formData.note);
-  const ret = await messagePost<{code: number, msg: string}>(formData);
-
-  if(ret.code === 200){
-    successData.isShow = true
-    successData.msg = ret.msg
-    formData.name = ''
-    formData.phone = ''
-    formData.area = ''
-  } else {
-    successData.isShow = true
-    successData.msg = ret.msg
-  }
-
-  setTimeout(() => {
-    successData.isShow = false
-    successData.msg = ''
-  }, 3000)
-}
 </script>
 
 <style lang='less' scoped>
