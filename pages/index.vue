@@ -1,16 +1,20 @@
 <template>
   <IndexBanner />
   <IndexProduct />
-  <IndexCase />
+  <IndexCase :data="value.cases" />
   <IndexComm />
-  <IndexTeam />
+  <IndexTeam :data="value.designer" />
   <IndexHall />
-  <IndexNews />
+  <IndexNews :data="value.articles" :top="value.articleTop" />
 </template>
 
 <script setup lang='ts'>
-import { IWebSite } from '@/config/tyings';
-const { web } = inject('website') as IWebSite
+import { IWebSite, IIndex } from '@/config/tyings';
+const { web } = inject('website') as IWebSite;
+const appConfig = useAppConfig();
+const { data } = await useFetch(appConfig.url + '/index');
+const value = data.value as IIndex;
+console.log(value)
 
 useHead({
   title: web.title,

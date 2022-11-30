@@ -24,6 +24,7 @@
       </li>
     </ul>
   </section>
+
   <section class="bg-gray-100">
     <section class="container mx-auto relative bg-white px-14 py-10 -top-10 shadow-lg">
       <h3 class="text-xl font-bold">100+线上搭配规划师</h3>
@@ -55,6 +56,15 @@
 </template>
 
 <script setup lang='ts'>
+import { IUser, IWebSite } from '@/config/tyings'
+import { PropType } from 'vue';
+
+defineProps({
+  datas: {
+    type: Array as PropType<Omit<IUser, 'rooms' | 'cases'>[]>,
+    default: []
+  }
+})
 const data = [
   {
     "id": 38,
