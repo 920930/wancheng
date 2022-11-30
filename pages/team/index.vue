@@ -3,16 +3,16 @@
     <section class="flex container mx-auto">
       <ul v-if="teams.data.length" class="flex-1">
         <li v-for="user in teams.data" :key="user.id" class="group bg-white flex shadow hover:shadow-lg mb-5 p-3">
-          <NuxtLink :to="`/designer/${user.id}`">
+          <NuxtLink :to="`/team/${user.id}`">
             <section class="md:w-72 w-32 md:h-96 h-40 bg-top bg-cover" :style="`background-image: url('${user.img}')`"></section>
           </NuxtLink>
           <section class="flex-1 text-sm md:px-5 p-2 flex flex-col">
             <div class="flex justify-between items-center">
               <div class="flex items-center">
-                <NuxtLink :to="`/designer/${user.id}`"><h3 class="md:mr-3 mr-2 md:text-2xl text-base group-hover:text-red-500">{{user.name}}</h3></NuxtLink>
+                <NuxtLink :to="`/team/${user.id}`"><h3 class="md:mr-3 mr-2 md:text-2xl text-base group-hover:text-red-500">{{user.name}}</h3></NuxtLink>
                 <span class="text-sm text-gray-500">{{level[user.level]}}</span>
               </div>
-              <NuxtLink :to="`/designer/${user.id}`" class="group-hover:text-red-500"><span class="md:mr-2 hidden md:block border px-3 py-1.5">查看详情</span><i class="iconfont icon-more1"></i></NuxtLink>
+              <NuxtLink :to="`/team/${user.id}`" class="group-hover:text-red-500"><span class="md:mr-2 hidden md:block border px-3 py-1.5">查看详情</span><i class="iconfont icon-more1"></i></NuxtLink>
             </div>
             <div class="mt-3 text-gray-500">
               擅长风格：<span v-for="(sty, i) in user.info.style">{{style[sty]}} <i v-if="user.info.style.length - 1 != i">、</i></span>
