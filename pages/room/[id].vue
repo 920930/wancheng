@@ -41,19 +41,24 @@
     </section>
 
     <Dialog v-model:open="openGd" meidaWidth height="h-100" top-img="/images/baojia/floor-gd.jpg">
-123
+      <AppInput name="name" label="姓名" />
+      <AppInput name="tel" label="手机号" class="mt-6" />
+      <AppInput name="note" label="参观时间" class="mt-6" />
+      <button class="w-full bg-red-600 text-white py-2 mt-6" @click="sendBtn">预约参观工地</button>
     </Dialog>
 
-    <!-- <div v-if="successData.isShow" class="absolute z-50 top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black bg-opacity-80 p-2 text-white rounded-md text-sm">{{successData.msg}}</div> -->
+    <div v-if="successData.isShow" class="absolute z-50 top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black bg-opacity-80 p-2 text-white rounded-md text-sm">{{successData.msg}}</div>
   </section>
 </template>
 
 <script lang='ts' setup>
 // import { getContent } from '@/api'
 import { IWebSite, IRoom } from '@/config/tyings';
+import { useForm } from "vee-validate";
+import * as yup from "yup";
+
 const appConfig = useAppConfig()
-const changeTitle = inject<(str: string) => void>('changeTitle'),
-      openGd = ref(false),
+const openGd = ref(false),
       successData = reactive({
         isShow: false,
         msg: ''
@@ -61,7 +66,6 @@ const changeTitle = inject<(str: string) => void>('changeTitle'),
 
 const route = useRoute();
 const { data } = await useFetch(appConfig.url + '/room/' + route.params.id);
-console.log(data.value)
 const room = data.value as IRoom;
 const { state } = inject<IWebSite>('website') as IWebSite;
 
@@ -73,6 +77,19 @@ useHead({
   ]
 })
 
+const validationSchema = yup.object({
+  name: yup.string().required("姓名必填"),
+  tel: yup.string().matches(/^1[3-9]\d{9}$/, '手机号不正确').required("手机号必填"),
+});
+
+const { handleSubmit } = useForm({
+  validationSchema,
+});
+
+const sendBtn = handleSubmit(async (value) => {
+  console.log(value)
+  await useFetch(appConfig.url + '/message', { method: 'post'})
+})
 </script>
 
 <style lang='less' scoped>

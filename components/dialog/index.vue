@@ -2,7 +2,6 @@
   <section class="fixed left-0 top-0 w-full h-full z-50" v-if="open">
     <div class="absolute left-1/2 border -translate-x-1/2 top-1/3 -translate-y-1/3 z-20 bg-white rounded-md shadow-2xl bg-cover bg-center bg-no-repeat"
       :class="[width, height, meidaWidth && 'dialog']"
-      :style="`background-image: url('${bgImg}');`"
     >
       <aside class="w-full h-32 bg-cover bg-center rounded-t-md bg-no-repeat" v-if="topImg" :style="`background-image: url('${topImg}');`"></aside>
       <section class="px-8" :class="topImg ? 'mt-6' : 'mt-8'">
@@ -35,10 +34,6 @@ defineProps({
   },
   topImg: {
     type: String
-  },
-  bgImg: {
-    type: String,
-    default: '/images/baojia/dialog/bg.jpg'
   },
   closeColor: {
     type: String,
