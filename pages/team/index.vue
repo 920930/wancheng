@@ -39,7 +39,7 @@
         <section class="bg-white p-3">
           <h2 class="text-lg font-bold">最新案例</h2>
           <ul class="mt-3">
-            <li v-for="item in cases" :key="item.id" class="border-b pb-4 mb-4">
+            <li v-for="(item, i) of cases" :key="item.id" :class="{'border-b pb-4 mb-4': i !== cases.length - 1}">
               <NuxtLink :to="`/case/${item.id}`" class="block h-56 bg-cover" :style="`background-image: url('${item.img}')`"></NuxtLink>
               <div class="flex mt-3 space-x-3">
                 <NuxtLink :to="`/team/${item.user.id}`">
@@ -59,7 +59,6 @@
 </template>
 
 <script setup lang='ts'>
-import type { Ref } from 'vue'
 import { IUserList, IWebSite, TCases } from '@/config/tyings'
 const appConfig = useAppConfig();
 const { web, level, year, style, huxing } = inject('website') as IWebSite;
@@ -85,6 +84,14 @@ const getTeams = async () => {
   cases.value = dataValue.cases;
 }
 getTeams()
+
+useHead({
+  title: '家装攻略 - ' + web.title,
+  meta: [
+    {name: 'keywords', content: web.keywords},
+    {name: 'description', content: web.description},
+  ]
+})
 </script>
 
 <style scoped lang="less">

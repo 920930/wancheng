@@ -52,10 +52,10 @@ const navs = [
     {title: '在建工地', url: '/room', icon: 'icon-icon1'}
   ]},
   {title: '设计团队', url: '/team'},
-  {title: '家装指南', url: '/', children: [
-    {title: '装修攻略', url: '', icon: 'icon-taiji'},
-    {title: '装修日记', url: '', icon: 'icon-book'},
-    {title: '常见问题', url: '', icon: 'icon-wentijieda'},
+  {title: '家装指南', url: '/news', children: [
+    {title: '装修攻略', url: '/news?cate=1', icon: 'icon-taiji'},
+    {title: '装修日记', url: '/news?cate=2', icon: 'icon-book'},
+    {title: '常见问题', url: '/news?cate=3', icon: 'icon-wentijieda'},
   ]},
   {title: '关于我们', url: '/', children: [
     {title: '品牌介绍', url: '', icon: 'icon-huiyuanhuangguanguanjun-xianxing'},
