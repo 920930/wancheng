@@ -14,7 +14,6 @@ const { web } = inject('website') as IWebSite;
 const appConfig = useAppConfig();
 const { data } = await useFetch(appConfig.url + '/index');
 const value = data.value as IIndex;
-console.log(value)
 
 useHead({
   title: web.title,
