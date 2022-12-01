@@ -1,16 +1,16 @@
 <template>
   <ul class="grid md:grid-cols-3 my-10 container mx-auto gap-6">
     <li class="bg-slate-100 p-3 shadow-md" v-for="item of cases.data" :key="item.id">
-      <NuxtLink to="/case" class="h-80 w-full block overflow-hidden relative">
+      <NuxtLink :to="`/case/${item.id}`" class="h-80 w-full block overflow-hidden relative">
         <div class="w-full h-full bg-center bg-cover hover:scale-105 duration-150" :style="`background-image: url(${item.img});`"></div>
         <i v-if="item.type === 0" class="absolute bg-gray-700 top-5 right-5 text-center text-white px-3 bg-opacity-80">VR</i>
       </NuxtLink>
       <div class="relative">
         <div class="pt-2">
-          <h3 class="text-xl font-bold">{{item.title}}</h3>
+          <NuxtLink :to="`/case/${item.id}`" class="text-xl font-bold">{{item.title}}</NuxtLink>
           <p class="pt-1 text-sm text-gray-600">{{style[item.style]}} | {{huxing[item.huxing]}}</p>
         </div>
-        <NuxtLink to="" class="absolute right-4 top-2 -translate-y-1/2 flex flex-col items-center">
+        <NuxtLink :to="`/team/${item.user.id}`" class="absolute right-4 top-2 -translate-y-1/2 flex flex-col items-center">
           <div class="w-20 h-20 bg-white shadow-md p-1.5 rounded-full mb-1">
             <div class="w-full h-full bg-cover rounded-full" :style="`background-image: url('${item.user.img}')`"></div>
           </div>

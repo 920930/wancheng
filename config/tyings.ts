@@ -58,7 +58,7 @@ export interface IUser extends TUser{
 }
 
 // 案例
-type TCases = {
+export type TCases = {
   id: number
   title: string
   keys?: string

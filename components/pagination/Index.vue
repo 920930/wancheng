@@ -25,12 +25,15 @@ const prevBtn = () => {
   if(props.size < props.total){
     emits('update:page', props.page - 1)
     emits('change')
+    nextTick(() => document.body.scrollTop = 0)
+  
   }
 }
 const nextBtn = () => {
   if(props.size < props.total){
     emits('update:page', props.page + 1)
-    emits('change')
+    emits('change');
+    nextTick(() => document.body.scrollTop = 0)
   }
 }
 </script>

@@ -35,24 +35,43 @@
         </li>
         <Pagination v-model:page="info.page" :total="teams.total" @change="getTeams" />
       </ul>
-      <section class="w-96 border md:ml-5"></section>
+      <section class="w-96 mt-5 md:mt-0 md:ml-5">
+        <section class="bg-white p-3">
+          <h2 class="text-lg font-bold">最新案例</h2>
+          <ul class="mt-3">
+            <li v-for="item in cases" :key="item.id" class="border-b pb-4 mb-4">
+              <NuxtLink :to="`/case/${item.id}`" class="block h-56 bg-cover" :style="`background-image: url('${item.img}')`"></NuxtLink>
+              <div class="flex mt-3 space-x-3">
+                <NuxtLink :to="`/team/${item.user.id}`">
+                  <aside class="w-14 h-14 bg-cover rounded-md" :style="`background-image: url('${item.user.img}')`"></aside>
+                </NuxtLink>
+                <div class="flex flex-col justify-evenly">
+                  <NuxtLink :to="`/case/${item.id}`">{{item.title}}</NuxtLink>
+                  <span class="text-gray-500">{{style[item.style]}} | {{huxing[item.huxing]}}</span>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </section>
+      </section>
     </section>
   </section>
 </template>
 
 <script setup lang='ts'>
 import type { Ref } from 'vue'
-import { IUserList, IWebSite } from '@/config/tyings'
+import { IUserList, IWebSite, TCases } from '@/config/tyings'
 const appConfig = useAppConfig();
-const { web, level, year, style } = inject('website') as IWebSite;
+const { web, level, year, style, huxing } = inject('website') as IWebSite;
 const info = reactive({
   page: 1,
   size: 6
 });
 const teams = reactive<IUserList>({
   data: [],
-  total: 0
+  total: 0,
 });
+const cases = ref<TCases[]>([])
 const getTeams = async () => {
   const { data } = await useFetch(appConfig.url + '/user', {
     query: {
@@ -60,9 +79,10 @@ const getTeams = async () => {
       size: info.size
     }
   })
-  const dataValue = data as Ref<IUserList>
-  teams.data = dataValue.value.data;
-  teams.total = dataValue.value.total;
+  const dataValue = data.value as { users: IUserList, cases: TCases[] }
+  teams.data = dataValue.users.data;
+  teams.total = dataValue.users.total;
+  cases.value = dataValue.cases;
 }
 getTeams()
 </script>
