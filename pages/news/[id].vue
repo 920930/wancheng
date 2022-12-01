@@ -3,7 +3,7 @@
     <article class="container mx-auto md:px-0 px-3">
       <div class="text-sm hidden md:block">
         <NuxtLink to="/">首页</NuxtLink> / 
-        <NuxtLink :to="`/news/list-${article.category.id}`">{{article.category.title}}</NuxtLink> / 
+        <NuxtLink :to="`/news?cate=${article.category.id}`">{{article.category.title}}</NuxtLink> / 
         <span class="text-yellow-600">{{article.title}}</span>
       </div>
       <section class="md:flex justify-between md:mt-5">
