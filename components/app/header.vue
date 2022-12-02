@@ -60,7 +60,6 @@ const navs = [
   {title: '关于我们', url: '/about', children: [
     {title: '品牌介绍', url: '/about', icon: 'icon-huiyuanhuangguanguanjun-xianxing'},
     {title: '公司动态', url: '/news?cate=4', icon: 'icon-book'},
-    {title: '联系我们', url: '', icon: 'icon-lianxishouhou'},
   ]},
 ]
 const item = ref([]);

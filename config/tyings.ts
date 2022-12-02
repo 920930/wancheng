@@ -68,7 +68,7 @@ export type TCases = {
   style: number
   huxing: number
   price: number
-  user: Pick<TUser, 'id' | 'name' | 'img' | 'level' | 'timer'>
+  user: Pick<TUser, 'id' | 'name' | 'img' | 'level' | 'timer' | 'cases' | 'info'>
   content: Tkv[]
   hits: number
   type?: number

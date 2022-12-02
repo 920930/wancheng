@@ -25,7 +25,7 @@
         </li>
       </ul>
     </template>
-    <template v-slot:wrapper-end><slot name="swiper-wrapper-end"></slot></template>
+    <template v-slot:container-end><slot name="swiper-wrapper-end">1231</slot></template>
   </swiper>
 </template>
 <script setup lang="ts">

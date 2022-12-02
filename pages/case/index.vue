@@ -24,7 +24,6 @@
 
 <script setup lang='ts'>
 import { IWebSite, ICaseList } from '@/config/tyings'
-import type { Ref } from 'vue'
 const { web, style, huxing } = inject<IWebSite>('website') as IWebSite;
 const appConfig = useAppConfig();
 const route = useRoute();
@@ -46,9 +45,9 @@ const getCases = async (type: any) => {
   const { data } = await useFetch(appConfig.url + '/case', {
     query
   })
-  const caseData = data as Ref<ICaseList>;
-    cases.data = caseData.value.data;
-    cases.total = caseData.value.total;
+  const caseData = data.value as ICaseList;
+    cases.data = caseData.data;
+    cases.total = caseData.total;
 }
 getCases(route.query.type)
 watch(() => route.query, (val) => {
