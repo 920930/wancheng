@@ -61,7 +61,7 @@ export interface IUser extends TUser{
 export type TCases = {
   id: number
   title: string
-  keys?: string
+  keywords: string
   description: string
   img: string
   area: string
