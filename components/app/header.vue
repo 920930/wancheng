@@ -57,9 +57,9 @@ const navs = [
     {title: '装修日记', url: '/news?cate=2', icon: 'icon-book'},
     {title: '常见问题', url: '/news?cate=3', icon: 'icon-wentijieda'},
   ]},
-  {title: '关于我们', url: '/', children: [
-    {title: '品牌介绍', url: '', icon: 'icon-huiyuanhuangguanguanjun-xianxing'},
-    {title: '公司动态', url: '', icon: 'icon-book'},
+  {title: '关于我们', url: '/about', children: [
+    {title: '品牌介绍', url: '/about', icon: 'icon-huiyuanhuangguanguanjun-xianxing'},
+    {title: '公司动态', url: '/news?cate=4', icon: 'icon-book'},
     {title: '联系我们', url: '', icon: 'icon-lianxishouhou'},
   ]},
 ]
