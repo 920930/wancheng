@@ -81,4 +81,5 @@ provide('changeTitle', (title: string) => topTitle.value = title)
     display: none;    
   }
 }
+
 </style>

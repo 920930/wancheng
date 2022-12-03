@@ -79,7 +79,9 @@ export interface ICaseList extends IPaginate{
   data: TCases[]
 }
 export interface ICase extends TCases{
-  anli: TCases[]
+  anli: TCases[],
+  prev: Pick<TCases, 'id' | 'title'>
+  next: Pick<TCases, 'id' | 'title'>
 }
 
 // 工地

@@ -1,5 +1,10 @@
 <template>
-  <AppSwiper :data="data"></AppSwiper>
+  <AppSwiper :data="data">
+    <template #swiper-wrapper-end>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </template>
+  </AppSwiper>
   <section class="py-10">
     <ul class="container mx-auto grid grid-cols-4 gap-16">
       <li class="bg-slate-50 flex items-center justify-between px-5 py-2 shadow-md cursor-pointer group hover:text-red-600">
@@ -50,5 +55,28 @@ const data = [
 </script>
 
 <style scoped>
-
+.swiper-button-prev, .swiper-button-next{
+  position: absolute;
+  top: 46%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, .7);
+  background-color: rgba(0, 0, 0, .7);
+}
+.swiper-button-prev, .swiper-button-next{
+  padding: 20px 16px;
+}
+.swiper-button-prev:after, .swiper-button-next:after, .swiper-button-next-banner {
+  font-size: 26px;
+}
+@media(min-width: 768px){
+  .swiper-button-prev{
+    padding: 35px 26px 35px 20px;
+  }
+  .swiper-button-next{
+    padding: 35px 20px 35px 26px;
+  }
+  .swiper-button-prev:after, .swiper-button-next-banner {
+    font-size: 36px;
+  }
+}
 </style>

@@ -33,12 +33,14 @@
           <template #default="{value}">
             <div class="w-full md:h-105 h-52 bg-center bg-cover" :style="`background-image: url('${value}')`"></div>
           </template>
+          <template #swiper-wrapper-end>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+          </template>
         </AppSwiper>
         <p class="bg-gray-100 my-3 p-4">{{dataValue.description}}</p>
-        <ul>
-          <li>上一页</li>
-          <li>上一页</li>
-        </ul>
+        <div class="text-sm" v-if="dataValue.prev">上一篇：<NuxtLink :to="`/case/${dataValue.prev.id}`">{{dataValue.prev.title}}</NuxtLink></div>
+        <div class="mt-2 text-sm" v-if="dataValue.next">下一篇：<NuxtLink :to="`/case/${dataValue.next.id}`">{{dataValue.next.title}}</NuxtLink></div>
       </section>
     </div>
     <div class="md:w-80">
@@ -108,5 +110,28 @@ const fetchBtn = handleSubmit(async (value) => {
 </script>
 
 <style lang='less' scoped>
-
+.swiper-button-prev, .swiper-button-next{
+  position: absolute;
+  top: 46%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, .7);
+  background-color: rgba(0, 0, 0, .7);
+}
+.swiper-button-prev, .swiper-button-next{
+  padding: 20px 16px;
+}
+.swiper-button-prev:after, .swiper-button-next:after, .swiper-button-next-banner {
+  font-size: 26px;
+}
+@media(min-width: 768px){
+  .swiper-button-prev{
+    padding: 35px 26px 35px 20px;
+  }
+  .swiper-button-next{
+    padding: 35px 20px 35px 26px;
+  }
+  .swiper-button-prev:after, .swiper-button-next-banner {
+    font-size: 36px;
+  }
+}
 </style>
