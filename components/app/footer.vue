@@ -1,5 +1,5 @@
 <template>
-  <section class="md:py-9 bg-[url('/images/index/footer-form.jpg')] mb-3 md:mb-0">
+  <section class="md:py-9 bg-[url('/images/index/footer-form.jpg')] mb-3 md:mb-0 hidden md:block">
     <div class="container mx-auto flex text-gray-300 items-end space-x-5">
       <h3 class="text-4xl font-bold">ONLINE RESERVATIONS</h3>
       <span>在线预约到店即可领取精美礼品一份</span>

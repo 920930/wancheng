@@ -1,8 +1,8 @@
 <template>
   <section class="bg-slate-100">
-    <section class="container mx-auto md:flex py-10">
+    <section class="container mx-auto md:flex py-10 px-3 md:px-0">
       <ul class="flex-1">
-        <li class="group bg-white flex p-3 md:p-5 shadow hover:shadow-lg mb-5" v-for="item in article.data" :key="item.id">
+        <li class="group bg-white flex p-3 md:p-5 shadow hover:shadow-lg md:mb-5 mb-3" v-for="item in article.data" :key="item.id">
           <NuxtLink :to="`/news/${item.id}`" class="w-28 md:w-72 inline-block overflow-hidden">
             <div class="w-full h-full bg-center bg-cover group-hover:scale-105 duration-200" :style="`background-image: url(${item.img});`"></div>
           </NuxtLink>

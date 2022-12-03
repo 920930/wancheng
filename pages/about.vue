@@ -1,9 +1,9 @@
 <template>
   <section class="bg-[url('/images/about/banner.jpg')] bg-cover bg-center md:h-110 h-56"></section>
-  <AppTitle title="品牌介绍" desc="做一次家装 做一生朋友" class="my-14" />
-  <div class="container mx-auto flex mb-16">
-    <div class=" w-1/2 bg-[url('/images/about/gs.png')] bg-cover"></div>
-    <div class="py-10 px-5 w-1/2 space-y-8">
+  <AppTitle title="品牌介绍" desc="做一次家装 做一生朋友" class="md:my-14 my-4" />
+  <div class="container mx-auto md:flex md:mb-16">
+    <div class="w-1/2 bg-[url('/images/about/gs.png')] bg-cover"></div>
+    <div class="md:py-10 px-5 md:w-1/2 space-y-3 md:space-y-8 w-full text-sm md:text-base">
       <p>成都二十四城装饰工程有限公司（以下简称二十四城装饰）创立于1999年，是一家集设计、施工为一体的全国性连锁整装装饰企业，连续七年荣获无投诉AAA级企业，也是西南数字化全案整装模式的开拓者和领航者。</p>
       <p>二十四城装饰在全国范围内拥有30000多平米的主材展厅，汇集了上百种国际国内一线装饰材料高端品牌，目前已在成都、重庆、 昆明、都江堰 、绵阳、泸州、青白江、崇州、广汉等地成立分公司。</p>
       <p>2017年，以创新者的姿态打造健康品质的整装产品，精心设计A4、A6、A8等系列家装产品，同时引进业界先进 ERP管理系统，构建以客户为中心的产品与服务体系，打破行业无标准、不规范、不透明的现象，重新定义以标准化、规模化、透明化的整体家装模式。同年，携手复旦大学，共同研发《家庭环境健康安全系统》，并成功申请专利，二十四城环保健康的装修理念就此真正落地。</p>
