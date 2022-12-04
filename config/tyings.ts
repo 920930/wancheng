@@ -129,7 +129,7 @@ export interface IWebSite {
   state: string[]
   style: string[]
   year: string[]
-  banner: {id: number; url: string}[]
+  banner: {id: number; url: string; pc: string; m: string;}[]
   product: {title: string; desc: string; url: string; img: string}[],
 }
 

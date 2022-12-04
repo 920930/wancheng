@@ -5,7 +5,6 @@
 </template>
 
 <script setup lang="ts">
-import type { Ref } from 'vue';
 import { IWebSite } from '@/config/tyings';
 const appConfig = useAppConfig()
 
@@ -30,24 +29,21 @@ const website = reactive<IWebSite>({
   banner: [],
   product: [],
 });
-const topTitle = ref('万城龙邦')
 
 const { data } = await useFetch(appConfig.url + '/website');
-const web = data as Ref<IWebSite>;
-website.web = web.value.web;
-website.area = web.value.area;
-website.huxing = web.value.huxing;
-website.level = web.value.level;
-website.space = web.value.space;
-website.state = web.value.state;
-website.style = web.value.style;
-website.year = web.value.year;
-website.banner = web.value.banner;
-website.product = web.value.product;
+const web = data.value as IWebSite;
+website.web = web.web;
+website.area = web.area;
+website.huxing = web.huxing;
+website.level = web.level;
+website.space = web.space;
+website.state = web.state;
+website.style = web.style;
+website.year = web.year;
+website.banner = web.banner;
+website.product = web.product;
 
 provide('website', website)
-provide('topTitle', topTitle)
-provide('changeTitle', (title: string) => topTitle.value = title)
 </script>
 
 <style>

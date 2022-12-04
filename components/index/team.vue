@@ -1,7 +1,7 @@
 <template>
-  <section class="pt-16 bg-[url('/images/index/team-bg.jpg')] pb-24 bg-center">
+  <section class="md:pt-16 pt-4 hidden md:block bg-[url('/images/index/team-bg.jpg')] md:pb-24 bg-center">
     <AppTitle title="万城龙邦·至尊整装" desc="让大宅大有不同，缔造您的专属完美装修方案" whiteColor />
-    <ul class="container mx-auto px-32 grid grid-cols-2 md:gap-x-96 gap-y-16 text-gray-400 md:mt-40 text-sm">
+    <ul class="container mx-auto px-32 grid md:grid-cols-2 md:gap-x-96 md:gap-y-16 text-gray-400 md:mt-40 text-sm">
       <li class="text-right pr-48">
         <div class="border-b pb-1.5 mb-2.5 text-teal-600 border-gray-500">擅长多元化风格诠释 <span class="text-xl">更专业</span></div>
         <p>精英设计团队平均从业经验8-18年专</p>
@@ -26,10 +26,10 @@
   </section>
 
   <section class="bg-gray-100">
-    <section class="container mx-auto relative bg-white px-14 py-10 -top-10 shadow-lg">
+    <section class="container mx-auto relative bg-white md:px-14 px-3 md:py-10 py-3 -top-10 shadow-lg">
       <h3 class="text-xl font-bold">100+线上搭配规划师</h3>
-      <p class="mt-2">基装设计师 + 软装设计师 + 家电和智能规划师 = 万城龙邦家装规划师</p>
-      <i class="w-14 border-b-2 inline-block my-3"></i>
+      <p class="mt-2 text-sm md:text-base">基装设计师 + 软装设计师 + 家电和智能规划师 = 万城龙邦家装规划师</p>
+      <i class="w-14 border-b-2 inline-block md:my-3 my-1"></i>
       <AppSwiper :data="data" isBreak :hasPagination="false">
         <template #default="{value}">
           <NuxtLink :to="`/team/${value.id}`" class="h-40 md:h-96 block bg-cover bg-center" :style="`background-image: url('${value.img}')`"></NuxtLink>

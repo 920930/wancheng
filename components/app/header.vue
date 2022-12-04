@@ -1,10 +1,10 @@
 <template>
-  <header class="w-full fixed h-16 shadow-lg border-b z-40 bg-slate-800 md:bg-white">
-    <section class="container mx-auto relative">
-      <NuxtLink to="/" class="flex justify-center md:inline-block">
+  <section class="md:fixed md:h-20 shadow-lg border-b z-30 md:bg-white w-full">
+    <section class="container mx-auto relative hidden md:block">
+      <NuxtLink to="/">
         <img src="http://www.cdymzs.com/statics/pc/images/logo.jpg" class="inline-block h-9 md:h-16" alt="logo" />
       </NuxtLink>
-      <ul class="hidden md:inline-flex ml-72 h-20 space-x-16 pt-7">
+      <ul class="hidden md:inline-flex ml-72 h-14 space-x-16 mt-7">
         <li v-for="(nav, i) in navs" class="group">
           <NuxtLink :to="nav.url" class="flex items-center hover:text-red-600">
             {{nav.title}}
@@ -30,16 +30,19 @@
         <span class="ml-2">{{web.tel}}</span>
       </section>
     </section>
-    <div class="md:hidden overflow-x-scroll w-full overflow-hidden whitespace-nowrap text-gray-300 pt-1 scro">
-      <NuxtLink v-for="item in mnavs" :to="item.url" class="w-100 px-3">{{item.title}}</NuxtLink>
-    </div>
-  </header>
-  <div class="h-16"></div>
+  </section>
+  <div class="md:hidden flex justify-center w-full">
+    <img src="http://www.cdymzs.com/statics/pc/images/logo.jpg" alt="logo" class="h-12" />
+  </div>
+  <div class="overflow-x-scroll md:hidden sticky bg-white shadow-md top-0 z-50 w-full overflow-hidden whitespace-nowrap py-1.5 scro space-x-6 px-3">
+    <NuxtLink v-for="item in mnavs" :to="item.url">{{item.title}}</NuxtLink>
+  </div>
+  <div class="md:h-20"></div>
 </template>
 
 <script lang='ts' setup>
 import { IWebSite } from '@/config/tyings';
-const { web } = inject('website') as IWebSite
+const { web } = inject<IWebSite>('website')!;
 const navs = [
   {title: '首页', url: '/'},
   {title: '新房整装', url: '/house', children: [

@@ -1,6 +1,6 @@
 <template>
-  <AppTitle title="家装案例·精品制造" desc="美家养成记，格调美学的灵感提案" class="mt-16" />
-  <ul class="container mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 my-12">
+  <AppTitle title="家装案例·精品制造" desc="美家养成记，格调美学的灵感提案" class="md:mt-16" />
+  <ul class="container mx-auto grid grid-cols-2 md:grid-cols-4 md:gap-6 gap-3 md:my-12 my-3 px-3 md:px-0">
     <li class="relative overflow-hidden w-full h-48 md:h-80 rounded-md group border" v-for="item in data" :key="item.id">
       <NuxtLink :to="`/case/${item.id}`">
         <div class="w-full h-full bg-cover duration-200 bg-center group-hover:scale-105" :style="`background-image: url('${item.img}')`"></div>

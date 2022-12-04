@@ -139,8 +139,6 @@ useHead({
     {name: 'description', content: web.description}
   ]
 })
-const changeTitle = inject<(str: string) => void>('changeTitle');
-changeTitle?.('全屋定制');
 
 const index = ref(0),
       activeIndex = ref(0),
