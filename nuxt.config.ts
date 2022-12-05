@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   modules: ['@nuxtjs/tailwindcss'],
   router: {
     options: {
-      linkExactActiveClass: 'text-red-600'
+      // linkExactActiveClass: 'text-red-600'
     }
   }
 })

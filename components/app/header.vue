@@ -35,7 +35,7 @@
     <img src="http://www.cdymzs.com/statics/pc/images/logo.jpg" alt="logo" class="h-12" />
   </div>
   <div class="overflow-x-scroll md:hidden sticky bg-white shadow-md top-0 z-50 w-full overflow-hidden whitespace-nowrap py-1.5 scro space-x-6 px-3">
-    <NuxtLink v-for="item in mnavs" :to="item.url">{{item.title}}</NuxtLink>
+    <span v-for="(item, i) in mnavs" :class="{'text-red-500': i === activeId}" @click="menuBtn(i, item.url)">{{item.title}}</span>
   </div>
   <div class="md:h-20"></div>
 </template>
@@ -43,6 +43,7 @@
 <script lang='ts' setup>
 import { IWebSite } from '@/config/tyings';
 const { web } = inject<IWebSite>('website')!;
+const router = useRouter();
 const navs = [
   {title: '首页', url: '/'},
   {title: '新房整装', url: '/house', children: [
@@ -81,6 +82,12 @@ const mnavs = [
   {title: '常见问题', url: '/news?cate=3'},
   {title: '品牌介绍', url: '/about'},
 ]
+
+const activeId = ref(0)
+const menuBtn = (i: number, url: string) => {
+  activeId.value = i;
+  router.push(url)
+}
 </script>
 
 <style lang='less' scoped>

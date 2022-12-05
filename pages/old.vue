@@ -89,8 +89,6 @@ const fetchBtn = handleSubmit(async (value) => {
 });
 
 const { web } = inject<IWebSite>('website') as IWebSite;
-const changeTitle = inject<(title: string) => void>('changeTitle')
-changeTitle?.('旧房翻新')
 
 const activeIndex = ref(0)
 useHead({

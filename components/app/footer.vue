@@ -17,9 +17,6 @@
         <ul class="flex-1 space-y-1 md:space-y-5 md:text-sm text-xs mt-3 md:mt-0 text-center md:text-left">
           <li>服务热线：{{web.tel}}</li>
           <li>地址：{{web.address}}</li>
-          <li class="hidden md:block">
-            <NuxtLink to="/baojia" class="bg-cyan-700 px-4 py-2 text-gray-200">获取报价</NuxtLink>
-          </li>
         </ul>
         <aside class="md:flex flex-col items-center ml-2 md:ml-0 hidden">
           <img class="w-24 md:w-28 mb-2" src="/images/wechat.png" alt="">

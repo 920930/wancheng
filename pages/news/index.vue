@@ -1,6 +1,6 @@
 <template>
   <section class="bg-slate-100">
-    <section class="container mx-auto md:flex py-10 px-3 md:px-0">
+    <section class="container mx-auto md:flex md:py-10 py-3 px-3 md:px-0">
       <ul class="flex-1">
         <li class="group bg-white flex p-3 md:p-5 shadow hover:shadow-lg md:mb-5 mb-3" v-for="item in article.data" :key="item.id">
           <NuxtLink :to="`/news/${item.id}`" class="w-28 md:w-72 inline-block overflow-hidden">
@@ -25,7 +25,7 @@
           <h2 class="text-lg font-bold">最新案例</h2>
           <ul class="mt-3">
             <li v-for="(item, i) in cases" :key="item.id" :class="{'border-b pb-4 mb-4': i !== cases.length - 1}">
-              <NuxtLink :to="`/case/${item.id}`" class="block h-56 bg-cover" :style="`background-image: url('${item.img}')`"></NuxtLink>
+              <NuxtLink :to="`/case/${item.id}`" class="block md:h-56 h-40 bg-center bg-cover" :style="`background-image: url('${item.img}')`"></NuxtLink>
               <div class="flex mt-3 space-x-3">
                 <NuxtLink :to="`/team/${item.user.id}`">
                   <aside class="w-14 h-14 bg-cover rounded-md" :style="`background-image: url('${item.user.img}')`"></aside>
