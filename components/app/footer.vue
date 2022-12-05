@@ -1,30 +1,56 @@
 <template>
-  <section class="md:py-9 bg-[url('/images/index/footer-form.jpg')] mb-3 md:mb-0 hidden md:block">
-    <div class="container mx-auto flex text-gray-300 items-end space-x-5">
-      <h3 class="text-4xl font-bold">ONLINE RESERVATIONS</h3>
-      <span>在线预约到店即可领取精美礼品一份</span>
-    </div>
-    <section class="container mx-auto pt-8 flex space-x-10">
-      <AppInput name="name" class="w-96" label="姓名" />
-      <AppInput name="tel" class="flex-1" label="电话" />
-      <button class="bg-red-600 w-52 text-white rounded" @click="fetchBtn">提交</button>
+  <footer class="bg-[url('/images/index/footer-bg.jpg')] text-gray-400 flex flex-col justify-between pt-3 md:pt-10">
+    <section class="container mx-auto px-3 md:px-0">
+      <div class="flex border-b mb-3 px-3 md:px-0 md:mb-7 text-sm md:text-base md:space-x-10 pb-3 md:pb-5 justify-between md:justify-start border-gray-700">
+        <NuxtLink to="/" class="hidden md:inline-block">网站首页</NuxtLink>
+        <NuxtLink to="/team">设计团队</NuxtLink>
+        <NuxtLink to="/case">精品案例</NuxtLink>
+        <NuxtLink to="/house">整装产品</NuxtLink>
+        <NuxtLink to="/room">在建工地</NuxtLink>
+        <NuxtLink to="/baojia" class="hidden md:inline-block">装修报价</NuxtLink>
+      </div>
+      <div class="md:flex">
+        <div class="md:hidden flex justify-center space-x-3">
+          <img class="w-28 mb-2" src="/images/wechat.png" alt="" />
+          <img class="w-28 mb-2" src="/images/wechat.png" alt="" />
+        </div>
+        <ul class="flex-1 space-y-1 md:space-y-5 md:text-sm text-xs mt-3 md:mt-0 text-center md:text-left">
+          <li>服务热线：{{web.tel}}</li>
+          <li>地址：{{web.address}}</li>
+          <li class="hidden md:block">
+            <NuxtLink to="/baojia" class="bg-cyan-700 px-4 py-2 text-gray-200">获取报价</NuxtLink>
+          </li>
+        </ul>
+        <aside class="md:flex flex-col items-center ml-2 md:ml-0 hidden">
+          <img class="w-24 md:w-28 mb-2" src="/images/wechat.png" alt="">
+          <span class="text-sm">加好友了解更多</span>
+        </aside>
+      </div>
     </section>
-  </section>
-  <section class="md:py-9 bg-center bg-[url('/images/index/footer-bg.jpg')] mb-3 md:mb-0">
-    <section class="container mx-auto text-gray-300 flex">
-      <section class="flex-1 text-teal-600">
-        <p>全国统一服务热线</p>
-        <h3 class="text-5xl font-bold mt-5">{{web.tel}}</h3>
-      </section>
-      <aside><img src="http://www.qijiadianshang.com/images/wechat.png" class="w-32" alt=""></aside>
+    <section class="md:mt-16 mt-2 h-10 md:h-14 flex flex-col md:flex-row items-center justify-center text-sm bg-black bg-opacity-40">
+      <span class="md:mr-2">{{web.name}}</span>
+      <NuxtLink to="http://beian.miit.gov.cn" v-if="web.beian" class="hidden md:inline-block">{{web.beian}}</NuxtLink>
     </section>
-  </section>
-  <section class="bg-black text-center">
-    <p class="text-gray-400 py-3 text-sm space-x-4">
-      <span>地址：{{web.address}}</span>
-      <span>{{web.beian}}</span>
-    </p>
-  </section>
+  </footer>
+  <aside class="md:hidden fixed z-50 bottom-0 text-sm w-full h-14 flex justify-around bg-gray-900 text-gray-300 shadow-current">
+    <NuxtLink to="/" class="flex flex-col items-center justify-center space-y-1">
+      <i class="iconfont icon-home" style="font-size: 20px;"></i>
+      <span>首页</span>
+    </NuxtLink>
+    <NuxtLink :to="`tel:${web.tel}`" class="flex flex-col items-center justify-center space-y-1">
+      <i class="iconfont icon-lianxi" style="font-size: 20px;"></i>
+      <span>电话咨询</span>
+    </NuxtLink>
+    <NuxtLink :to="web.kefu" class="flex flex-col items-center justify-center space-y-1">
+      <i class="iconfont icon-lianxishouhou" style="font-size: 23px;"></i>
+      <span>人工客服</span>
+    </NuxtLink>
+    <NuxtLink to="/baojia" class="flex flex-col items-center justify-center space-y-1">
+      <i class="iconfont icon-shangpinjiagexinxi" style="font-size: 18px;"></i>
+      <span>智能报价</span>
+    </NuxtLink>
+  </aside>
+  <div class="h-14 md:hidden"></div>
 </template>
 
 <script lang='ts' setup>
@@ -32,7 +58,7 @@ import { useForm } from "vee-validate";
 import * as yup from "yup";
 import { IWebSite } from '@/config/tyings'
 
-const { web } = inject<IWebSite>('website') as IWebSite;
+const { web } = inject<IWebSite>('website')!;
 
 const validationSchema = yup.object({
   name: yup.string().required("姓名必填"),

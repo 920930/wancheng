@@ -5,7 +5,9 @@
       <NuxtLink :to="`/case/${item.id}`">
         <div class="w-full h-full bg-cover duration-200 bg-center group-hover:scale-105" :style="`background-image: url('${item.img}')`"></div>
       </NuxtLink>
-      <div class="text-white absolute bottom-2 w-60 h-6 leading-6 group-hover:bg-opacity-60 text-center left-1/2 rounded-md -translate-x-1/2 bg-opacity-40 text-sm bg-black">{{item.title}} <span class="hidden md:inline-block"> | {{huxing[item.huxing]}}</span> | {{style[item.style]}}</div>
+      <div class="text-white absolute bottom-2 w-60 h-6 leading-6 group-hover:bg-opacity-60 text-center left-1/2 rounded-md -translate-x-1/2 bg-opacity-40 text-sm bg-black">
+        {{item.title}} <span class="hidden md:inline-block"> | {{huxing[item.huxing]}} | {{style[item.style]}}</span>
+      </div>
     </li>
   </ul>
 </template>

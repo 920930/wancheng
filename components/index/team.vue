@@ -26,7 +26,7 @@
   </section>
 
   <section class="bg-gray-100">
-    <section class="container mx-auto relative bg-white md:px-14 px-3 md:py-10 py-3 -top-10 shadow-lg">
+    <section class="container mx-auto relative bg-white md:px-14 px-3 md:py-10 py-3 md:-top-10 shadow-lg">
       <h3 class="text-xl font-bold">100+线上搭配规划师</h3>
       <p class="mt-2 text-sm md:text-base">基装设计师 + 软装设计师 + 家电和智能规划师 = 万城龙邦家装规划师</p>
       <i class="w-14 border-b-2 inline-block md:my-3 my-1"></i>

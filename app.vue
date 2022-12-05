@@ -47,7 +47,7 @@ provide('website', website)
 </script>
 
 <style>
-@import '//at.alicdn.com/t/c/font_3785749_hatoh817zsn.css';
+@import '//at.alicdn.com/t/c/font_3785749_695rq275nyk.css';
 @media(min-width: 769px) {
   .banner{
     height: 700px;
