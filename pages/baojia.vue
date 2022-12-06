@@ -3,7 +3,7 @@
   <AppTitle title="算算我家装修要花多少钱" desc="5秒快速报价，装修预算早知道！" class="md:my-10 my-3" />
   <section class="container mx-auto md:flex md:mb-10 mb-3 md:space-x-10 px-3 md:px-0">
     <img src="/images/baojia/price_leftbg.jpg" class="hidden md:block">
-    <section class="space-y-6 flex-1">
+    <section class="space-y-5 md:space-y-6 flex-1">
       <div class="hidden md:flex items-end space-x-5"><h3 class="text-2xl">装修计算器</h3> <span>已有数万客户通过此功能获取报价</span></div>
       <AppInput label="姓名" name="name" />
       <AppInput label="电话" name="tel" />
@@ -12,7 +12,7 @@
         <AppInput label="面积" name="area" class="flex-1" />
       </div>
       <AppInput label="户型" name="huxing" />
-      <button class="bg-red-600 w-full py-2 text-white">立即报价</button>
+      <button class="bg-red-600 w-full py-2 text-white" @click="fetchBtn">立即报价</button>
     </section>
     <aside class="md:w-80">
       <h3 class="text-2xl md:block hidden">您家的装修预算：</h3>
@@ -99,22 +99,26 @@
 </template>
 
 <script setup lang='ts'>
+import { useForm } from "vee-validate";
+import * as yup from "yup";
+
 const userRef = ref<HTMLElement>();
+  const validationSchema = yup.object({
+  name: yup.string().required("姓名必填"),
+  tel: yup.string().matches(/^1[3-9]\d{9}$/, '手机号不正确').required("手机号必填"),
+  loupan: yup.string().required("楼盘必填"),
+  area: yup.string().required("面积必填"),
+  huxing: yup.string().required("户型必填"),
+});
 
-onMounted(() => {
-  const height = userRef.value!.getBoundingClientRect().height;
+const { handleSubmit } = useForm({
+  validationSchema,
+});
 
-  window.onload = function () {
-    setInterval(() => {
-    if(userRef.value!.scrollTop >= height) {
-      userRef.value!.scrollTop = 0;
-    } else {
-      userRef.value!.scrollTop = userRef.value!.scrollTop + 1;
-    }
-  }, 50)
-  }
-  
-})
+const fetchBtn = handleSubmit(async (value) => {
+  console.log(value)
+});
+
 </script>
 
 <style scoped lang="less">
