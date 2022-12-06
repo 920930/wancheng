@@ -2,7 +2,7 @@
   <article class="bg-slate-100 md:pb-12 pb-3">
     <section class="bg-[url('/images/index/footer-bg.jpg')] md:bg-[url('/images/index/product-bg.jpg')] md:py-12 py-3 pt-12">
       <section class="container mx-auto flex px-3 md:px-0">
-        <section class="md:w-80 w-44 bg-cover bg-center border-4 border-white md:border-yellow-700" :style="`background-image: url('${user.img}')`"></section>
+        <section class="md:w-80 w-44 h-52 md:h-auto bg-cover bg-center border-4 border-white md:border-yellow-700" :style="`background-image: url('${user.img}')`"></section>
         <section class="flex-1 relative md:mt-6 mt-12 bg-white md:bg-opacity-0 md:pl-6 pl-2 pt-2 md:pt-0">
           <div class="md:text-6xl font-bold text-yellow-700 float-right mr-2 md:mr-0">
             <i class="md:hidden iconfont icon-hot text-red-500"></i>
@@ -37,7 +37,7 @@
       </section>
       <section class="md:hidden px-3">
         <section class="bg-white p-3 text-xs text-gray-500 flex justify-between">
-          <div>设计经验：<span class="text-gray-900 font-bold">{{user.timer}}年</span></div>
+          <div>设计经验：<span class="text-gray-900 font-bold">{{year[user.timer]}}</span></div>
           <div>毕业院校：<span class="text-gray-900 font-bold">{{user.info.edu}}</span></div>
         </section>
       </section>

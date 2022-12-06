@@ -44,7 +44,7 @@
                 <p class="md:mt-6 md:leading-7 hidden md:block">{{value.desc}}</p>
               </section>
             </div>
-            <AppTel isWhite class="md:mt-16 mt-8" />
+            <AppTel isWhite class="mt-16 hidden md:block" />
           </div>
         </section>
       </template>
@@ -82,7 +82,7 @@
           <li><span class="text-red-600 italic md:mr-4 mr-1 text-2xl">01</span>无缝接入美学整配服务流程，递进式分段交付，一站式服务体验</li>
           <li><span class="text-red-600 italic md:mr-4 mr-1 text-2xl">02</span>摒弃外包不靠谱，无售后安装服务</li>
           <li><span class="text-red-600 italic md:mr-4 mr-1 text-2xl">03</span>本地集散仓储，及时高效解决补件、差件、售后等问题</li>
-          <li><span class="text-red-600 italic md:mr-4 mr-1 text-2xl">04</span>精确到毫厘的高超技艺，贴心到家的售后服务</li>
+          <li class="hidden md:block"><span class="text-red-600 italic md:mr-4 mr-1 text-2xl">04</span>精确到毫厘的高超技艺，贴心到家的售后服务</li>
         </ul>
       </div>
     </section>

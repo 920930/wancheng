@@ -1,5 +1,5 @@
 <template>
-  <ul class="grid md:grid-cols-3 my-10 container mx-auto md:gap-6 gap-3 px-3 md:px-0">
+  <ul class="grid md:grid-cols-3 md:my-10 my-4 container mx-auto md:gap-6 gap-3 px-3 md:px-0">
     <li class="bg-slate-100 p-3 shadow-md" v-for="item of cases.data" :key="item.id">
       <NuxtLink :to="`/case/${item.id}`" class="md:h-80 h-40 w-full block overflow-hidden relative">
         <div class="w-full h-full bg-center bg-cover hover:scale-105 duration-150" :style="`background-image: url(${item.img});`"></div>
@@ -19,7 +19,7 @@
       </div>
     </li>
   </ul>
-  <Pagination :total="cases.total" v-model:page="info.page" @change="getCases($route.query.type)" class="mb-10" v-if="cases.data.length" />
+  <Pagination :total="cases.total" v-model:page="info.page" @change="getCases($route.query.type)" class="md:mb-10 mb-4" v-if="cases.data.length" />
 </template>
 
 <script setup lang='ts'>

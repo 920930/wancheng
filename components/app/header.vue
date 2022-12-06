@@ -32,7 +32,9 @@
     </section>
   </section>
   <div class="md:hidden flex justify-center w-full">
-    <img src="http://www.cdymzs.com/statics/pc/images/logo.jpg" alt="logo" class="h-12" />
+    <NuxtLink to="/">
+      <img src="http://www.cdymzs.com/statics/pc/images/logo.jpg" alt="logo" class="h-12" />
+    </NuxtLink>
   </div>
   <div class="overflow-x-scroll md:hidden sticky bg-white shadow-md top-0 z-50 w-full overflow-hidden whitespace-nowrap py-1.5 scro space-x-6 px-3">
     <span v-for="(item, i) in mnavs" :class="{'text-red-500': i === activeId}" @click="menuBtn(i, item.url)">{{item.title}}</span>

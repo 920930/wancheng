@@ -11,7 +11,7 @@
       </section>
     </section>
 
-    <section class="container mx-auto pb-10">
+    <section class="container mx-auto md:pb-10 pb-3 pt-3 md:pt-0">
       <AppTitle title="五大主材" desc="国内大牌 绝对实力派 你要想要的 我们都有" bgSize class="mb-7" />
       <AppSwiper :data="floor1" :breakpoints="null" v-model:activeIndex="activeIndex" slotContainerStartBool>
         <template #default="{value}">
@@ -33,7 +33,7 @@
       <AppTel />
     </section>
 
-    <section class="bg-[url('/images/house/new/kitchen-bg.jpg')] bg-cover bg-center md:pt-16 pt-6">
+    <section class="bg-[url('/images/house/new/kitchen-bg.jpg')] bg-cover bg-center md:pt-16 pt-3">
       <section class="container mx-auto relative">
         <AppTitle title="厨房装修" desc="超强性能，收纳扩容，下厨更轻松" bgSize />
         <aside class="md:h-96 h-56"></aside>
@@ -68,7 +68,7 @@
     </section>
 
     <section class="container mx-auto">
-      <AppTitle title="个性主题" desc="按需定制设计个性化主题墙，空间重磅添彩" bgSize class="my-10" />
+      <AppTitle title="个性主题" desc="按需定制设计个性化主题墙，空间重磅添彩" bgSize class="md:my-10 my-3" />
 
       <ul class="grid grid-cols-6 md:gap-5 gap-2 md:mb-12 mb-3 px-3 md:px-0">
         <li v-for="(item, i) in flool4" class="md:h-80 h-32 overflow-hidden group" :class=" i < 2 ? 'col-span-3' : 'col-span-2'">
@@ -93,10 +93,10 @@
       </section>
     </section>
     
-    <section class="container mx-auto md:px-0 px-3 pb-10">
-      <AppTitle title="品质心选" desc="在你忽略的地方，也关怀备至" bgSize class="my-10" />
+    <section class="container mx-auto md:px-0 px-3 md:pb-10 pb-3">
+      <AppTitle title="品质心选" desc="在你忽略的地方，也关怀备至" bgSize class="md:my-10 my-3" />
 
-      <ul class="grid md:grid-cols-4 grid-cols-2 md:gap-8 gap-3 mb-16">
+      <ul class="grid md:grid-cols-4 grid-cols-2 md:gap-8 gap-3 md:mb-16 mb-3">
         <li v-for="item in flool6">
           <div class="md:h-60 h-32 bg-cover bg-center" :style="`background-image: url('${item.url}');`"></div>
           <h4 class="text-lg font-bold text-center md:my-3 my-2">{{item.title}}</h4>
@@ -117,7 +117,7 @@
           <p>实现100%材料品牌化率、80%材料品类进口率</p>
         </div>
 
-        <ul class="grid grid-cols-3 md:grid-cols-8 gap-3 mt-10">
+        <ul class="grid grid-cols-3 md:grid-cols-8 gap-3 md:mt-10 mt-3">
           <li v-for="img in flool7" class="bg-white p-1 flex justify-center"><img :src="img.url" alt=""></li>
         </ul>
 

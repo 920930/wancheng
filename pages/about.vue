@@ -1,7 +1,7 @@
 <template>
   <section class="bg-[url('/images/about/banner.jpg')] bg-cover bg-center md:h-110 h-56"></section>
   <AppTitle title="品牌介绍" desc="做一次家装 做一生朋友" class="md:my-14 my-4" />
-  <div class="container mx-auto md:flex md:mb-16">
+  <div class="container mx-auto md:flex md:mb-16 mb-3">
     <div class="w-1/2 bg-[url('/images/about/gs.png')] bg-cover"></div>
     <div class="md:py-10 px-5 md:w-1/2 space-y-3 md:space-y-8 w-full text-sm md:text-base">
       <p>成都二十四城装饰工程有限公司（以下简称二十四城装饰）创立于1999年，是一家集设计、施工为一体的全国性连锁整装装饰企业，连续七年荣获无投诉AAA级企业，也是西南数字化全案整装模式的开拓者和领航者。</p>
@@ -10,14 +10,14 @@
       <p>2021年，二十四城潜心研发推出数字化全案整装模式，全面实现线上搭配和个性化挑选，真正意义上做到让客户省时省心、实现拎包入住的装修全体验。</p>
     </div>
   </div>
-  <section class="bg-[url('/images/index/product-bg.jpg')] py-16 bg-cover mb-16">
+  <section class="bg-[url('/images/index/product-bg.jpg')] md:py-16 py-3 bg-cover md:mb-16 mb-3">
     <AppTitle title="业务范围-新零售+整装" desc="一套设计全屋基装，全屋电器，风格样板，全套软式，整装+新零售均可满足" />
-    <ul class="container mx-auto grid grid-cols-2 md:grid-cols-4 mt-10">
-      <li v-for="(item, i) in floor4" :key="i" class="border-l p-8 border-neutral-400">
+    <ul class="container mx-auto grid grid-cols-2 md:grid-cols-4 md:mt-10 mt-3">
+      <li v-for="(item, i) in floor4" :key="i" class="border-l md:p-8 p-3 border-neutral-400">
         <i class="text-gray-500" :class="item.icon" style="font-size: 30px;"></i>
         <h3 class="text-xl font-bold mb-2 mt-4">{{item.title}}</h3>
         <span class="text-sm text-gray-500">{{item.desc}}</span>
-        <aside class="grid grid-cols-2 mt-8 text-sm gap-4 text-gray-600 mb-5">
+        <aside class="grid grid-cols-2 mt-8 text-sm md:gap-4 gap-2 text-gray-600 mb-5">
           <span v-for="(arr, index) in item.arr" :key="index">{{arr}}</span>
         </aside>
         <i class="iconfont icon-add text-gray-500" style="font-size: 30px;"></i>

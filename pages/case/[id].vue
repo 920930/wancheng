@@ -1,5 +1,5 @@
 <template>
-  <section class="bg-gray-100 md:p-6 p-2 md:flex w-full">
+  <section class="bg-gray-100 md:p-6 p-3 md:flex w-full">
     <div class="md:w-80 hidden md:block">
       <div class="bg-white p-3">
         <h3 class="text-center font-bold mb-3">免费申请户型规划</h3>
@@ -21,13 +21,13 @@
       <div class="bg-[url('/images/baojia/server_tel.jpg')] bg-cover bg-center h-20 my-5"></div>
     </div>
     <div class="md:w-1/2 flex-1 md:mx-5">
-      <section class="bg-white px-5 py-4">
+      <section class="bg-white p-3">
         <h1 class="text-center font-bold text-2xl">{{dataValue.title}}</h1>
         <p class="space-x-5 text-gray-600 border-b my-2 pb-1 text-sm">
           <span>风格：{{style[dataValue.style]}}</span>
           <span>户型：{{huxing[dataValue.huxing]}}</span>
           <span>面积：{{dataValue.area}}㎡</span>
-          <span>造价：{{dataValue.price}}万元</span>
+          <span class="hidden md:inline-block">造价：{{dataValue.price}}万元</span>
         </p>
         <AppSwiper :data="dataValue.content">
           <template #default="{value}">
@@ -43,7 +43,7 @@
         <div class="mt-2 text-sm" v-if="dataValue.next">下一篇：<NuxtLink :to="`/case/${dataValue.next.id}`">{{dataValue.next.title}}</NuxtLink></div>
       </section>
     </div>
-    <div class="md:w-80">
+    <div class="md:w-80 mt-3 md:mt-0">
       <section class="bg-white p-3">
         <section class="flex">
           <NuxtLink
@@ -61,11 +61,11 @@
           <span v-for="item in dataValue.user.info.style" class="border mt-2 inline-block px-2 rounded-xl">{{style[item]}}</span>
         </p>
       </section>
-      <section class="mt-5 bg-white p-3">
+      <section class="md:mt-5 mt-3 bg-white p-3">
         <h3 class="text-center font-bold text-lg">{{dataValue.user.name}}最新作品</h3>
         <ul class="mt-2 space-y-3">
           <li v-for="(item, i) in dataValue.user.cases" :key="item.id" class="group" :class="{'border-b pb-2': dataValue.user.cases.length - 1 != i}">
-            <NuxtLink :to="`/case/${item.id}`" class="block h-52 bg-cover mb-2" :style="`background-image: url('${item.img}')`"></NuxtLink>
+            <NuxtLink :to="`/case/${item.id}`" class="block h-44 md:h-52 bg-cover bg-center mb-2" :style="`background-image: url('${item.img}')`"></NuxtLink>
             <NuxtLink :to="`/case/${item.id}`" class="group-hover:text-red-600">{{item.title}}</NuxtLink>
             <p class="text-sm text-gray-600">{{style[item.style]}} | {{huxing[item.huxing]}}</p>
           </li>
@@ -85,7 +85,6 @@ const appConfig = useAppConfig();
 const route = useRoute();
 const { data } = await useFetch(appConfig.url + '/case/' + route.params.id);
 const dataValue = data.value as ICase;
-console.log(dataValue)
 useHead({
   title: dataValue.title,
   meta: [
