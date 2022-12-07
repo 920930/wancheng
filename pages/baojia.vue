@@ -101,7 +101,7 @@
 <script setup lang='ts'>
 import { useForm } from "vee-validate";
 import * as yup from "yup";
-
+const appConfig = useAppConfig();
 const userRef = ref<HTMLElement>();
   const validationSchema = yup.object({
   name: yup.string().required("姓名必填"),
@@ -111,12 +111,16 @@ const userRef = ref<HTMLElement>();
   huxing: yup.string().required("户型必填"),
 });
 
-const { handleSubmit } = useForm({
+const { handleSubmit, resetForm } = useForm({
   validationSchema,
 });
 
 const fetchBtn = handleSubmit(async (value) => {
-  console.log(value)
+  await useFetch(appConfig.url+'/message', {
+    method: 'post',
+    body: value
+  })
+  resetForm()
 });
 
 </script>
