@@ -6,12 +6,14 @@
     <section class="space-y-5 md:space-y-6 flex-1">
       <div class="hidden md:flex items-end space-x-5"><h3 class="text-2xl">装修计算器</h3> <span>已有数万客户通过此功能获取报价</span></div>
       <AppInput label="姓名" name="name" />
-      <AppInput label="电话" name="tel" />
+      <AppInput label="电话" name="phone" />
       <div class="md:flex justify-between md:space-x-5 space-y-6 md:space-y-0">
         <AppInput label="楼盘名称" name="loupan" class="flex-1" />
         <AppInput label="面积" name="area" class="flex-1" />
       </div>
-      <AppInput label="户型" name="huxing" />
+      <AppInput label="户型" name="huxing" type="select" #select>
+        <option v-for="item in huxing">{{item}}</option>
+      </AppInput>
       <button class="bg-red-600 w-full py-2 text-white" @click="fetchBtn">立即报价</button>
     </section>
     <aside class="md:w-80">
@@ -100,12 +102,16 @@
 
 <script setup lang='ts'>
 import { useForm } from "vee-validate";
+import { IWebSite } from '@/config/tyings';
 import * as yup from "yup";
+
 const appConfig = useAppConfig();
+const { huxing } = inject<IWebSite>('website')!;
 const userRef = ref<HTMLElement>();
+
   const validationSchema = yup.object({
   name: yup.string().required("姓名必填"),
-  tel: yup.string().matches(/^1[3-9]\d{9}$/, '手机号不正确').required("手机号必填"),
+  phone: yup.string().matches(/^1[3-9]\d{9}$/, '手机号不正确').required("手机号必填"),
   loupan: yup.string().required("楼盘必填"),
   area: yup.string().required("面积必填"),
   huxing: yup.string().required("户型必填"),
@@ -116,11 +122,11 @@ const { handleSubmit, resetForm } = useForm({
 });
 
 const fetchBtn = handleSubmit(async (value) => {
-  await useFetch(appConfig.url+'/message', {
+  const data = await useFetch(appConfig.url+'/message', {
     method: 'post',
     body: value
   })
-  resetForm()
+  // resetForm()
 });
 
 </script>

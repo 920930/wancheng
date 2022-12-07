@@ -10,7 +10,7 @@
 
 <script setup lang='ts'>
 import { IWebSite, IIndex } from '@/config/tyings';
-const { web, banner } = inject('website') as IWebSite;
+const { web, banner } = inject<IWebSite>('website')!;
 const appConfig = useAppConfig();
 const { data } = await useFetch(appConfig.url + '/index');
 const value = data.value as IIndex;
