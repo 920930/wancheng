@@ -29,7 +29,8 @@
           <span>面积：{{dataValue.area}}㎡</span>
           <span class="hidden md:inline-block">造价：{{dataValue.price}}万元</span>
         </p>
-        <AppSwiper :data="dataValue.content">
+        <iframe v-if="dataValue.vr" class="w-full md:h-105 h-52" :src="dataValue.vr"></iframe>
+        <AppSwiper :data="dataValue.content" v-else>
           <template #default="{value}">
             <div class="w-full md:h-105 h-52 bg-center bg-cover" :style="`background-image: url('${value}')`"></div>
           </template>

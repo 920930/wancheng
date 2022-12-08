@@ -1,13 +1,14 @@
 <template>
   <section>
     <section class="md:h-110 h-56 bg-cover bg-center bg-[url('/images/house/quanwu/banner.jpg')]"></section>
-    <section class="container hidden md:block mx-auto p-6 bg-white rounded-md shadow-md -translate-y-1/2">
+    <section class="container hidden md:block mx-auto p-6 bg-white rounded-md shadow-md -translate-y-1/2 relative">
       <h2 class="mb-2 text-lg font-bold">获取装修方案</h2>
       <section class="flex space-x-10">
         <AppInput name="name" label="姓名" class="w-100" />
         <AppInput name="tel" label="手机号" class="flex-1" />
         <button class="bg-red-600 w-52 text-white rounded" @click="fetchBtn">提交</button>
       </section>
+      <AppAlert :msg="info.msg" v-model:show="info.show" />
     </section>
 
     <section class="container mx-auto flex">
@@ -118,18 +119,31 @@
 import { IWebSite } from '@/config/tyings';
 import { useForm } from "vee-validate";
 import * as yup from "yup";
-
+const info = reactive({
+  msg: '',
+  show: false
+})
+const appConfig = useAppConfig();
 const validationSchema = yup.object({
   name: yup.string().required("姓名必填"),
   tel: yup.string().matches(/^1[3-9]\d{9}$/, '手机号不正确').required("手机号必填"),
 });
 
-const { handleSubmit } = useForm({
+const { handleSubmit, resetForm } = useForm({
   validationSchema,
 });
 
 const fetchBtn = handleSubmit(async (value) => {
-  console.log(value)
+  const { data } = await useFetch(appConfig.url + '/message', {
+    method: 'post',
+    body: { ...value, path: useRoute().fullPath}
+  })
+  const dataValue = data.value as {code: number; msg: string}
+  info.show = true;
+  info.msg = dataValue.msg
+  if (dataValue.code == 200) {
+    resetForm()
+  }
 });
 const { web } = inject<IWebSite>('website') as IWebSite;
 useHead({

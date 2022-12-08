@@ -33,9 +33,9 @@
             </section>
           </div>
 
-          <div class="md:sticky top-24 bg-white md:p-5 p-3 mt-3 md:mt-5">
+          <!-- <div class="md:sticky top-24 bg-white md:p-5 p-3 mt-3 md:mt-5">
             <h4 class="border-b-2 border-gray-400 mb-4 pb-1 inline-block">立即报价</h4>
-          </div>
+          </div> -->
         </aside>
       </section>
     </article>
