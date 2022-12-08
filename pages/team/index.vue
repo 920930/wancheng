@@ -88,7 +88,7 @@ const getTeams = async () => {
 getTeams()
 
 useHead({
-  title: '家装攻略 - ' + web.title,
+  title: '设计团队 - ' + web.title,
   meta: [
     {name: 'keywords', content: web.keywords},
     {name: 'description', content: web.description},

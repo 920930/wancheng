@@ -26,13 +26,14 @@
             </p>
           </div>
         </section>
-        <section class="w-96 border ml-10 bg-gray-700 bg-opacity-50 p-6 hidden md:block">
+        <section class="w-96 border ml-10 bg-gray-700 bg-opacity-50 p-6 hidden md:block relative">
           <h4 class="text-center text-white text-2xl">免费申请设计初案</h4>
           <p class="text-center text-white text-sm mt-2">提交您的信息专业家装顾问1对1服务</p>
           <AppInput name="name" label="你的称呼" class="mt-4" />
           <AppInput name="tel" label="手机号" class="mt-7" />
           <AppInput name="area" label="房屋面积" class="my-7" />
           <button class="bg-red-600 text-white rounded w-full py-2.5 active:bg-red-500" @click="sendBtn">立即预约</button>
+          <AppAlert :msg="info.msg" v-model:show="info.show" />
         </section>
       </section>
       <section class="md:hidden px-3">
@@ -90,11 +91,26 @@ const validationSchema = yup.object({
   area: yup.string().required("姓名必填"),
 });
 
-const { handleSubmit } = useForm({
+const { handleSubmit, resetForm } = useForm({
   validationSchema,
 });
+
+const info = reactive({
+  msg: '',
+  show: false
+})
+
 const sendBtn = handleSubmit(async (value) => {
-  console.log(value)
+  const {data} = await useFetch(appConfig.url + '/message', {
+    method: 'post',
+    body: {...value, path: useRoute().fullPath}
+  })
+  const dataValue = data.value as {code: number; msg: string}
+  info.show = true;
+  info.msg = dataValue.msg
+  if (dataValue.code == 200) {
+    resetForm()
+  }
 })
 
 const route = useRoute(),
@@ -105,7 +121,7 @@ const user = data.value as IUser;
 const { level, huxing, style, state, web, year } = inject<IWebSite>('website') as IWebSite;
 
 useHead({
-  title: `${user.name} ${web.title}`,
+  title: `${user.name} - ${web.title}`,
   meta: [
     {name: 'keywords', content: `${user.name},${web.keywords}`},
     {name: 'description', content: user.info.idea},

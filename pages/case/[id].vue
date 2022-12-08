@@ -38,7 +38,7 @@
             <div class="swiper-button-next"></div>
           </template>
         </AppSwiper>
-        <p class="bg-gray-100 my-3 p-4">{{dataValue.description}}</p>
+        <p class="bg-gray-100 my-3 p-4 text-sm md:text-base">{{dataValue.description}}</p>
         <div class="text-sm" v-if="dataValue.prev">上一篇：<NuxtLink :to="`/case/${dataValue.prev.id}`">{{dataValue.prev.title}}</NuxtLink></div>
         <div class="mt-2 text-sm" v-if="dataValue.next">下一篇：<NuxtLink :to="`/case/${dataValue.next.id}`">{{dataValue.next.title}}</NuxtLink></div>
       </section>

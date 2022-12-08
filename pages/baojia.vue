@@ -3,18 +3,19 @@
   <AppTitle title="算算我家装修要花多少钱" desc="5秒快速报价，装修预算早知道！" class="md:my-10 my-3" />
   <section class="container mx-auto md:flex md:mb-10 mb-3 md:space-x-10 px-3 md:px-0">
     <img src="/images/baojia/price_leftbg.jpg" class="hidden md:block">
-    <section class="space-y-5 md:space-y-6 flex-1">
+    <section class="space-y-5 md:space-y-6 flex-1 relative">
       <div class="hidden md:flex items-end space-x-5"><h3 class="text-2xl">装修计算器</h3> <span>已有数万客户通过此功能获取报价</span></div>
       <AppInput label="姓名" name="name" />
       <AppInput label="电话" name="phone" />
       <div class="md:flex justify-between md:space-x-5 space-y-6 md:space-y-0">
-        <AppInput label="楼盘名称" name="loupan" class="flex-1" />
+        <AppInput label="楼盘名称" name="floor" class="flex-1" />
         <AppInput label="面积" name="area" class="flex-1" />
       </div>
       <AppInput label="户型" name="huxing" type="select" #select>
-        <option v-for="item in huxing">{{item}}</option>
+        <option v-for="(item, i) in huxing" :value="i">{{item}}</option>
       </AppInput>
       <button class="bg-red-600 w-full py-2 text-white" @click="fetchBtn">立即报价</button>
+      <AppAlert :msg="info.msg" v-model:show="info.show" />
     </section>
     <aside class="md:w-80">
       <h3 class="text-2xl md:block hidden">您家的装修预算：</h3>
@@ -106,13 +107,18 @@ import { IWebSite } from '@/config/tyings';
 import * as yup from "yup";
 
 const appConfig = useAppConfig();
-const { huxing } = inject<IWebSite>('website')!;
+const route = useRoute();
+const { huxing, web } = inject<IWebSite>('website')!;
 const userRef = ref<HTMLElement>();
+const info = reactive({
+  msg: '',
+  show: false
+})
 
-  const validationSchema = yup.object({
+const validationSchema = yup.object({
   name: yup.string().required("姓名必填"),
   phone: yup.string().matches(/^1[3-9]\d{9}$/, '手机号不正确').required("手机号必填"),
-  loupan: yup.string().required("楼盘必填"),
+  floor: yup.string().required("楼盘必填"),
   area: yup.string().required("面积必填"),
   huxing: yup.string().required("户型必填"),
 });
@@ -122,13 +128,25 @@ const { handleSubmit, resetForm } = useForm({
 });
 
 const fetchBtn = handleSubmit(async (value) => {
-  const data = await useFetch(appConfig.url+'/message', {
+  const { data } = await useFetch(appConfig.url+'/message', {
     method: 'post',
-    body: value
+    body: {...value, path: route.fullPath}
   })
-  // resetForm()
+  const dataValue = data.value as {code: number; msg: string}
+  info.show = true;
+  info.msg = dataValue.msg
+  if (dataValue.code == 200) {
+    resetForm()
+  }
 });
 
+useHead({
+  title: '在线报价 - ' + web.title,
+  meta: [
+    {name: 'keywords', content: web.keywords},
+    {name: 'description', content: web.description},
+  ]
+})
 </script>
 
 <style scoped lang="less">

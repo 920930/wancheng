@@ -42,9 +42,9 @@
 
     <Dialog v-model:open="openGd" meidaWidth height="h-100" top-img="/images/baojia/floor-gd.jpg">
       <AppInput name="name" label="姓名" />
-      <AppInput name="tel" label="手机号" class="mt-6" />
-      <AppInput name="note" label="参观时间" class="mt-6" />
-      <button class="w-full bg-red-600 text-white py-2 mt-6" @click="sendBtn">预约参观工地</button>
+      <AppInput name="phone" label="手机号" class="mt-5" />
+      <AppInput name="note" label="参观时间" class="mt-5" />
+      <button class="w-full bg-red-600 text-white py-2 mt-5" @click="sendBtn">预约参观工地</button>
     </Dialog>
 
     <div v-if="successData.isShow" class="absolute z-50 top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black bg-opacity-80 p-2 text-white rounded-md text-sm">{{successData.msg}}</div>
@@ -82,13 +82,26 @@ const validationSchema = yup.object({
   tel: yup.string().matches(/^1[3-9]\d{9}$/, '手机号不正确').required("手机号必填"),
 });
 
-const { handleSubmit } = useForm({
+const { handleSubmit, resetForm } = useForm({
   validationSchema,
 });
 
+const info = reactive({
+  msg: '',
+  show: false
+})
+
 const sendBtn = handleSubmit(async (value) => {
-  console.log(value)
-  await useFetch(appConfig.url + '/message', { method: 'post'})
+  const { data } = await useFetch(appConfig.url + '/message', {
+    method: 'post',
+    body: {...value, path: useRoute().fullPath}
+  })
+  const dataValue = data.value as {code: number; msg: string}
+  info.show = true;
+  info.msg = dataValue.msg
+  if (dataValue.code == 200) {
+    resetForm()
+  }
 })
 </script>
 

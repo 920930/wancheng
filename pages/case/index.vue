@@ -25,6 +25,7 @@
 <script setup lang='ts'>
 import { IWebSite, ICaseList } from '@/config/tyings'
 const { web, style, huxing } = inject<IWebSite>('website') as IWebSite;
+
 const appConfig = useAppConfig();
 const route = useRoute();
 const info = reactive({
@@ -55,6 +56,13 @@ watch(() => route.query, (val) => {
   getCases(val.type)
 })
 
+useHead({
+  title: '整装案例 - ' + web.title,
+  meta: [
+    {name: 'keywords', content: web.keywords},
+    {name: 'description', content: web.description},
+  ]
+})
 </script>
 
 <style scoped lang="less">

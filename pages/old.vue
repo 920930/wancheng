@@ -92,7 +92,7 @@ const { web } = inject<IWebSite>('website') as IWebSite;
 
 const activeIndex = ref(0)
 useHead({
-  title: '新房整装 - ' + web.name,
+  title: '旧房翻新 - ' + web.name,
   meta: [
     {name: 'keywords', content: web.keywords},
     {name: 'description', content: web.description},
