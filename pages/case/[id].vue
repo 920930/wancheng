@@ -6,8 +6,9 @@
         <AppInput name="name" label="姓名" class="mb-5" />
         <AppInput name="tel" label="手机号" class="mb-5" />
         <AppInput name="area" label="房屋面积" class="mb-5" />
-        <button class="text-center w-full py-2 bg-red-600 text-white">提交</button>
+        <button class="text-center w-full py-2 bg-red-600 text-white" @click="fetchBtn">提交</button>
         <p class="text-red-600 mt-2 text-sm text-center">*您的信息将被严格保密，请放心填写</p>
+        <AppAlert :msg="info.msg" v-model:show="info.show" />
       </div>
       <section class="text-sm bg-white p-3 md:mt-5 mt-3">
         <NuxtLink :to="`/case/${item.id}`" class="flex group cursor-pointer" v-for="(item, i) in dataValue.anli" :class="{' border-b mb-2 pb-2': i !== dataValue.anli.length - 1}">
@@ -84,6 +85,11 @@ import * as yup from "yup";
 const { style, huxing, year } = inject<IWebSite>('website') as IWebSite;
 const appConfig = useAppConfig();
 const route = useRoute();
+const info = reactive({
+  msg: '',
+  show: false
+})
+
 const { data } = await useFetch(appConfig.url + '/case/' + route.params.id);
 const dataValue = data.value as ICase;
 useHead({
@@ -99,12 +105,21 @@ const validationSchema = yup.object({
   tel: yup.string().matches(/^1[3-9]\d{9}$/, '手机号不正确').required("手机号必填"),
 });
 
-const { handleSubmit } = useForm({
+const { handleSubmit, resetForm } = useForm({
   validationSchema,
 });
 
 const fetchBtn = handleSubmit(async (value) => {
-  console.log(value)
+  const { data } = await useFetch(appConfig.url+'/message', {
+    method: 'post',
+    body: {...value, path: route.fullPath}
+  })
+  const dataValue = data.value as {code: number; msg: string}
+  info.show = true;
+  info.msg = dataValue.msg
+  if (dataValue.code == 200) {
+    resetForm()
+  }
 });
 
 </script>
