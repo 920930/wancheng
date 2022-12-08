@@ -6,7 +6,7 @@
       <h2 class="mb-2 text-lg font-bold">改造师免费上门量房</h2>
       <section class="flex space-x-10">
         <AppInput name="name" label="姓名" class="w-100" />
-        <AppInput name="tel" label="手机号" class="flex-1" />
+        <AppInput name="phone" label="手机号" class="flex-1" />
         <button class="bg-red-600 w-52 text-white rounded" @click="fetchBtn">提交</button>
       </section>
       <AppAlert :msg="info.msg" v-model:show="info.show" />
@@ -84,7 +84,7 @@ const info = reactive({
 })
 const validationSchema = yup.object({
   name: yup.string().required("姓名必填"),
-  tel: yup.string().matches(/^1[3-9]\d{9}$/, '手机号不正确').required("手机号必填"),
+  phone: yup.string().matches(/^1[3-9]\d{9}$/, '手机号不正确').required("手机号必填"),
 });
 
 const { handleSubmit, resetForm } = useForm({
